@@ -1,0 +1,96 @@
+################################################################################
+# Aliases
+#
+# Basic file for all aliases. Please use the 
+################################################################################
+
+# Applications
+#------------------------------------------------------------------------------- 
+alias ant='/opt/ant/bin/ant'
+alias tmux='tmux -f ${HOME}/.homb/tmux.conf'
+
+# Shell 
+#-------------------------------------------------------------------------------
+alias rm='rm -f'
+alias ls='ls -h --color=auto'
+alias l='ls -1'
+alias ll='ls -lp'
+alias la='ls -la'
+alias lla='ls -sh1la'
+alias cp='cp -f'
+alias du='du --si'
+alias df='df -h'
+alias mv='mv -f'
+alias pcmt='cmt php'
+
+
+# Previous Directory
+#-------------------------------------------------------------------------------
+alias cdp='cd $OLDPWD'
+alias cdo='cd $OLDPWD'
+alias cdold='cd $OLDPWD'
+
+
+# Shortcut Aliases (Oddities)
+#-------------------------------------------------------------------------------
+alias xerox='cp -a'
+alias shredd='shred -n 100 -u  -v -x -z'
+alias psu='ps -x|grep -v grep|grep -v ps'
+alias tails='ps -a|grep -v grep|grep -v ps|grep tail'
+alias recat='service tomcat restart'
+alias repache='service httpd restart'
+alias htps='service httpd status'
+
+
+# McOddities 
+#-------------------------------------------------------------------------------
+alias cw='cd ~/work'
+
+# Screen shortcuts... not really used anymore.
+alias W='screen -ls'
+
+# Disk free on local mounts
+alias dfl='df -h|head -1;df -h|grep ^/'
+
+# Disk free on network mounts
+alias dfn='df -h|grep -v ^/ |grep -v ^tmpfs'
+
+# Count of HTTP processes (not Java)
+alias htcnt='ps aux|grep -v java|grep -v grep|grep -v tail|grep -c httpd'
+
+# Yes.. this really happened.
+alias markdown='perl ~/bin/Markdown_1.0.1/Markdown.pl'
+
+# Fix f'd sudo
+alias sudo='export SUDO_USER=$USER;sudo'
+
+
+# Fat Finger Aliases
+#-------------------------------------------------------------------------------
+alias cs='cd'
+alias mkae='make'
+alias celar='clear'
+alias leac='clear'
+alias clera='clear'
+alias sl='ls'
+alias Grep='grep'
+alias GRep='grep'
+alias GREp='grep'
+alias GREP='grep'
+alias grp='grep'
+alias atn='ant'
+
+# Humor me baby.
+#-------------------------------------------------------------------------------
+# not funny at work... at all.
+alias ergh="echo rm -rf /usr \&;echo [1] $(ps -f|grep 0:00.0|grep bash|grep -v grep|head -1|cut -c 10-15);sleep 5;echo [1]+\ \ Done\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rm -rf /usr"
+alias foo="echo bar"
+alias damn="echo Hey\! Don\'t say that!"
+alias dood="echo sweet!"
+alias doo="echo swee!"
+alias heh="echo Funny stuff huh."
+alias humm="echo Very interesting."
+alias sweet="echo dood!"
+alias yeah="echo Party Time!"
+
+# vim:syntax=sh
