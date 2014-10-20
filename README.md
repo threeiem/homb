@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ~/.homb
 ====
 
@@ -48,9 +47,3 @@ if [ -f "~/.fresh/build/shell.sh" ]; then
 fi
 
 ```
-=======
-homb
-====
-
-This is my dotfiles project for use with fresh. 
->>>>>>> origin
