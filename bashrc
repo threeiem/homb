@@ -1,30 +1,32 @@
-function bash_happy() {
+###############################################################################
+# Bash Shell Resouce File
+#
+# Contains all the magic for Bash shell with Homb. This all pivots on what is 
+# set in the "HOMBACE" variable. All the functions are defined in 
+# $HOMBASE/bashlib for this file.
+#
+###############################################################################
+HOMBACE="${HOME}/.homb" # NO TRAILING SLASH
 
-  local which=$(which bash > /dev/null)
-  local alias=$(alias bash &> /dev/null)  
+# Load the bashlib library
+BASHLIB="${HOMBACE}/bashlib" && test -f $BASHLIB && source $BASHLIB
 
-  if [ "${SHELL}" == "$(which bash)" ]; then
 
-    $which || $alias || return 1
-    return 0
 
-  else
-
-    return 1
-
-  fi
-
-}
-
+# Leave if it's not teh bash.
 bash_happy|| return;
 
 # Include other resource files
 #-------------------------------------------------------------------------------
-source ${HOME}/.homb/aliases
-source ${HOME}/.homb/completion.tmux
-source ${HOME}/.homb/completion.drush
+clood aliases
+clood completion.tmux
+clood completion.drush
+clood bashlib
+
 
 # Main user
+#
+# This section is for customizations for the specific user.
 #------------------------------------------------------------------------------- 
 lookup_name="phil.cogbill"
 umask 0002
@@ -39,6 +41,8 @@ export LC_ALL="C"
 export LANG="en_US.UFT-8"
 export IRCNAME="Federal Holiday"
 export DISPLAY_CONNECT="${DISPLAY}"
+export CUSTOM_SSH_AUTH_SOCK=${HOME}/.ssh/ssh_auth_sock
+
 
 # History File Specifics
 #-------------------------------------------------------------------------------
@@ -68,6 +72,15 @@ fi
 
 # Export the value
 export CRAZY_PROMPT
+
+
+if [ $(test_socket_link "${CUSTOM_SSH_AUTH_SOCK}") ]; then
+
+  export SSH_AUTH_SOCK="${CUSTOM_SSH_AUTH_SOCK}"
+
+fi
+
+
 
 # Switch the prompt based on the terminal we are using.
 #------------------------------------------------------------------------------- 
