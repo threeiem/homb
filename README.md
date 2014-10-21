@@ -22,8 +22,8 @@ it to work.
 
 ```
 # Homb dotfiles
-if [ -f "~/.homb/bashrc" ]; then
-  source "~/.homb/bashrc"
+if [ -f "${HOME}/.homb/bashrc" ]; then
+  source "${HOME}/.homb/bashrc"
 fi
 
 ```
@@ -42,8 +42,8 @@ Once fresh is downloaded add this to your ~/.bashrc file...
 
 ```
 # fresh dotfiles
-if [ -f "~/.fresh/build/shell.sh" ]; then
-  source "~/.fresh/build/shell.sh"
+if [ -f "${HOME}/.fresh/build/shell.sh" ]; then
+  source "${HOME}/.fresh/build/shell.sh"
 fi
 
 ```
