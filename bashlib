@@ -1,0 +1,54 @@
+function bash_happy() {
+
+  local which=$(which bash > /dev/null)
+  local alias=$(alias bash &> /dev/null)  
+
+  if [ "${SHELL}" == "$(which bash)" ]; then
+
+    $which || $alias || return 1
+    return 0
+
+  else
+
+    return 1
+
+  fi
+
+}
+
+
+function test_socket_link(){
+
+  local broken=$(find "$1" -type l -print0| \
+    xargs -r0 file| \
+    grep "broken symbolic"| \
+    sed -e 's/^\|: *broken symbolic.*$/"/g')
+
+  if [ $? -ne 0 ]; then
+
+    #echo "WARNING: Issue with SSH_AUTH_SOCK link."
+    return 1
+
+  else
+
+    return 0
+
+  fi
+
+}
+
+
+include(){
+
+  [[ -f "$1" ]] && source "$1"
+
+}
+
+
+clood(){
+
+  [[ -f "${HOMBACE}/$1" ]] && source "${HOMBACE}/$1"
+
+}
+
+# vim: ft=sh
