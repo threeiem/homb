@@ -58,13 +58,14 @@ fi
 #-------------------------------------------------------------------------------
 export PATH=$PATH
 
-# Include other resource files
+# Include other resource files - The order matters. :-\
 #-------------------------------------------------------------------------------
 include bash/aliases
-include bash/ps1
 include bash/color
-include tmux/completion
+include bash/ps1
+
 include drush
+include tmux/completion
 
 
 # vim:ft=sh
