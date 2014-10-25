@@ -15,14 +15,6 @@ BASHLIB="${HOMBASE}/bash/lib" && test -f $BASHLIB && source $BASHLIB
 # Leave if it's not teh bash.
 bash_happy|| return;
 
-# Include other resource files
-#-------------------------------------------------------------------------------
-include bash/aliases
-include bash/ps1
-include bash/color
-include tmux/completion
-include drush
-
 # Main user
 #
 # This section is for customizations for the specific user.
@@ -54,14 +46,25 @@ export HISTCONTROL="ignoredups"
 #-------------------------------------------------------------------------------
 export SVN_EDITOR="vim"
 
+
 if [ $(test_socket_link "${CUSTOM_SSH_AUTH_SOCK}") ]; then
 
   export SSH_AUTH_SOCK="${CUSTOM_SSH_AUTH_SOCK}"
 
 fi
 
+
 # Export the path (important)
 #-------------------------------------------------------------------------------
 export PATH=$PATH
+
+# Include other resource files
+#-------------------------------------------------------------------------------
+include bash/aliases
+include bash/ps1
+include bash/color
+include tmux/completion
+include drush
+
 
 # vim:ft=sh

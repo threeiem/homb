@@ -45,18 +45,25 @@ include(){
   if [ -f "${HOMBASE}/${1}" ];  then
 
     source "${HOMBASE}/${1}"
-    echo "Included:${HOMBASE}/${1}"
 
   else
 
-    if [ -f "${HOMBASE}/${1}/rc"  && ${1} != "tmux" ]; then
+    if [ -f "${HOMBASE}/${1}/rc" ]; then
+      
+      # DANGER! We don't include tmux rc, but it's not failing either.
+      if [ "${1}" == "tmux" ]; then
+       
+        return 0 # Grumpy cat. No.
 
-      echo "Included:${HOMBASE}/${1}/rc"
-      source "${HOMBASE}/${1}/rc"
+      else
+
+        source "${HOMBASE}/${1}/rc"
+
+
+      fi
 
     else
 
-      echo "FAIL: $1";
       return 1 #fail
 
     fi

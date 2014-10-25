@@ -28,7 +28,7 @@ case $TERM in
 
   ansi*)
 
-    if [ $USER = $lookup_name ]; then
+    if [ $USER == $lookup_name ]; then
       PS1=$CRAZY_PROMPT
     else
       PS1=$ADMIN_PROMPT
@@ -37,7 +37,7 @@ case $TERM in
 
   screen*)
 
-    if [ $USER = $lookup_name ]; then
+    if [ $USER == $lookup_name ]; then
       PS1=$CRAZY_PROMPT
     else
       PS1=$ADMIN_PROMPT
