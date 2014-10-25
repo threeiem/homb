@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function bash_happy() {
 
   local which=$(which bash > /dev/null)
@@ -40,14 +42,33 @@ function test_socket_link(){
 
 include(){
 
-  [[ -f "$1" ]] && source "$1"
+  if [ -f "${HOMBASE}/${1}" ];  then
+
+    source "${HOMBASE}/${1}"
+    echo "Included:${HOMBASE}/${1}"
+
+  else
+
+    if [ -f "${HOMBASE}/${1}/rc"  && ${1} != "tmux" ]; then
+
+      echo "Included:${HOMBASE}/${1}/rc"
+      source "${HOMBASE}/${1}/rc"
+
+    else
+
+      echo "FAIL: $1";
+      return 1 #fail
+
+    fi
+
+  fi
 
 }
 
 
-clood(){
+PROMPT(){
 
-  [[ -f "${HOMBACE}/$1" ]] && source "${HOMBACE}/$1"
+  echo "this will do some ps1 stuff"
 
 }
 

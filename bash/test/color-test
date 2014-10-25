@@ -1,0 +1,31 @@
+#!/bin/bash
+
+source rc
+
+
+# include test
+include(){
+
+  if [ -f "${HOMBASE}/${1}" ];  then
+    source "${HOMBASE}/${1}"
+  else
+    if [ -f "${HOMEBASE}/${1}/rc" ]; then
+      source "${HOMBASE}/${1}/rc"
+    else
+      return 1 #fail
+    fi
+  fi
+
+}
+
+include drush
+
+source color
+echo -en "${IRed}${On_Green}Intense Red on Green Test${Color_Reset}"
+echo -en "${IRed}Intense Red on Color Reset${Color_Reset}"
+echo -en "${Red}Red on Color Reset${Color_Reset}"
+echo ""
+echo "Test Completed: Success."
+exit;
+
+# vim:ft=sh

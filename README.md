@@ -17,13 +17,14 @@ git clone https://github.com/threeiem/homb ~/.homb
 
 ```
 
-Homb is seperate, but migrating to fresh so we need to add a special hook for 
-it to work.
+Homb is seperate, but migrating to fresh so for now we need to source the 
+bash resource file for it begin working. This will be baked into fresh 
+later.
 
 ```
 # Homb dotfiles
-if [ -f "${HOME}/.homb/bashrc" ]; then
-  source "${HOME}/.homb/bashrc"
+if [ -f "${HOME}/.homb/bash/rc" ]; then
+  source "${HOME}/.homb/bash/rc"
 fi
 
 ```
