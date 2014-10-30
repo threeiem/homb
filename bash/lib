@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#################################################################################
+#
+# bash_happy
+#
+# Checks to see that we are indeed running teh bash.
+#
+#################################################################################
 function bash_happy() {
 
   local which=$(which bash > /dev/null)
@@ -19,6 +26,13 @@ function bash_happy() {
 }
 
 
+#################################################################################
+#
+# test_socket_link
+#
+# Checks for the ssh_auth_sock link to see if it is valid or not.
+#
+#################################################################################
 function test_socket_link(){
 
   local broken=$(find "$1" -type l -print0| \
@@ -40,6 +54,13 @@ function test_socket_link(){
 }
 
 
+#################################################################################
+# 
+# include
+#
+# A quick way to include files for the homb project.
+#
+#################################################################################
 include(){
 
   if [ -f "${HOMBASE}/${1}" ];  then
@@ -72,11 +93,48 @@ include(){
 
 }
 
+#################################################################################
+# 
+# getGit
+#
+# We are going to use this over __get_ps1() because we want to swap the the 
+# symbology for colors on interactive scripts when possible.
+#
+#################################################################################
+function getGit(){
 
-PROMPT(){
+  # Get the data from git bash completion and remove the spaces... ugh spaces.
+  GIT_PS1=$(__git_ps1 "(%s)") 
 
-  echo "this will do some ps1 stuff"
+  if [ "${GIT_PS1}" ]; then
+
+    echo -en "$GIT_PS1"
+
+  fi
 
 }
+
+
+#################################################################################
+#
+# interactive
+#
+# Check to see if the shell is interactive or not.  Returns a 1 if the shell is
+# not a login/interactive shell.
+#
+#################################################################################
+function interactive(){
+
+  if [ "${PS1}" ]; then
+
+    return 0
+
+  else
+
+    return 1
+
+  fi
+}
+
 
 # vim: ft=sh

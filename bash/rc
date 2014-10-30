@@ -33,6 +33,8 @@ export LANG="en_US.UFT-8"
 export IRCNAME="Federal Holiday"
 export DISPLAY_CONNECT="${DISPLAY}"
 export CUSTOM_SSH_AUTH_SOCK=${HOME}/.ssh/ssh_auth_sock
+export PROMPT_DIRTRIM=3
+
 
 
 # History File Specifics
@@ -45,7 +47,9 @@ export HISTCONTROL="ignoredups"
 # VCS variables
 #-------------------------------------------------------------------------------
 export SVN_EDITOR="vim"
-
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
 
 if [ $(test_socket_link "${CUSTOM_SSH_AUTH_SOCK}") ]; then
 
