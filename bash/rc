@@ -64,9 +64,11 @@ export PATH=$PATH
 
 # Include other resource files - The order matters. :-\
 #-------------------------------------------------------------------------------
-include bash/aliases
+include bash/alias
 include bash/color
 include bash/ps1
+include bash/home
+include bash/work
 
 include drush
 include tmux/completion
