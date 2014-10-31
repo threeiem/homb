@@ -1,0 +1,4 @@
+# Don't monitor these repositories.
+bash/work
+bash/home
+bash/test
