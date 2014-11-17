@@ -2,68 +2,52 @@
 # ~/.homb/bash/ps1
 #
 # This file contains the configuration information for the bash prompt.
+#
 #################################################################################
 COLOR_USER="${IGreen}"
+COLOR_ADMIN="${IRed}"
+COLOR_SU="${IYellow}"
 COLOR_PATH="${Green}"
 COLOR_HOST="${IWhite}"
 
+# TODO Sybology conversion for gitPS1()
 COLOR_GIT_UNTRACKED="${Yellow}"
 
 # Pick the prompt based on the system
+# TODO Refactor this to reduce the amount of repeated code.. ugh. WTF.
 #------------------------------------------ -------------------------------------
-BASIC_PROMPT='\u@\h \$ ' #basic prompt
+PROMPT_BASIC='\u@\h \$ ' #basic prompt
 
+PROMPT_USER='$(echo -en "${COLOR_USER}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}") $(gitPS1)]\n\$ '; 
 
-CRAZY_PROMPT='$(echo -en "${COLOR_USER}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}") $(getGit)]\n\$ '; 
+PROMPT_SU='$(echo -en "${COLOR_SU}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}") $(gitPS1)]\n\$ '; 
 
-ADMIN_PROMPT='\[\033[3;31;40m\]\u\[\033[0;37;40m\]@\[\033[1;37;40m\]\h\[\033[0;37;40m\][\[\033[0;31;40m\]\w\[\033[0;37;40m\]]\n\$ '; 
+PROMPT_ADMIN='$(echo -en "${COLOR_ADMIN}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}") $(gitPS1)]\n\$ '; 
 
-# Check what promt to load so we don't have to change this file for each user.  
-#------------------------------------------------------------------------------- 
-if [ $USER != $lookup_name ]
-then
-  CRAZY_PROMPT=$ADMIN_PROMPT
-fi
 
 # Switch the prompt based on the terminal we are using.
-#------------------------------------------------------------------------------- 
-case $TERM in
+#-------------------------------------------------------------------------------
+if [ $(interactive) ]; then
 
-  ansi*)
+  # Load  prompt for the super user
+  #---------------------------------------------------------------------------
+  if [ "${UID}" == "0" ]; then
+      
+    PS1=$PROMPT_SU
 
-    if [ $USER == $lookup_name ]; then
-      PS1=$CRAZY_PROMPT
-    else
-      PS1=$ADMIN_PROMPT
-    fi
-    ;;
+  else
 
-  screen*)
+    PS1=$PROMPT_USER
 
-    if [ $USER == $lookup_name ]; then
-      PS1=$CRAZY_PROMPT
-    else
-      PS1=$ADMIN_PROMPT
-    fi
-    ;;
+  fi
+      
+else
 
-  linux*)
+  PS1=$PROMPT_BASIC
 
-    PS1=$CRAZY_PROMPT
-    ;;
+fi
 
-  xterm*)
-    PS1=$CRAZY_PROMPT
-    ;;
-
-  putty-*)
-    PS1=$CRAZY_PROMPT
-    ;;
-
-  *)
-    PS1=$BASIC_PROMPT
-    ;;
-
-esac
-
+################################################################################
+# vim:syntax=sh
 # vim:ft=sh
+################################################################################

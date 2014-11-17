@@ -1,5 +1,13 @@
+################################################################################
+# Colors
+#
+# File that contains all the local colors in semi easy to use strings. Thse can
+# be mixed together to get the desired color intensity and background.
+#
+################################################################################
+
 # Reset
-Color_Reset='\e[0m'       # Text Reset
+Color_Reset='\e[0m'     # Text Reset
 
 # Regular Colors
 Black='\e[0;30m'        # Black
@@ -70,3 +78,8 @@ On_IBlue='\e[0;104m'    # Blue
 On_IPurple='\e[0;105m'  # Purple
 On_ICyan='\e[0;106m'    # Cyan
 On_IWhite='\e[0;107m'   # White
+
+################################################################################
+# vim:ft=sh
+# vim:syntax=sh
+################################################################################

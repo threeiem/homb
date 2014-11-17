@@ -5,26 +5,37 @@
 # set in the "HOMBACE" variable. All the functions are defined in 
 # $HOMBASE/bashlib for this file.
 #
+# vim:ft=sh
+#
 ###############################################################################
+
+################################################################################
+#  Homb Specifics
+# 
+# Configurations required by Homb to load and work correctly. You must set the
+# REFERENCE_USER variable to the name of the login user. HOMBASE is the root of
+# the Homb project (ie. ~/.homb) 
+#
+################################################################################
 HOMBASE="${HOME}/.homb" # NO TRAILING SLASH
 
-# Load the bashlib library
+# Load the bashlib library - Gives us all the other helpers and files for bash.
 BASHLIB="${HOMBASE}/bash/lib" && test -f $BASHLIB && source $BASHLIB
-
 
 # Leave if it's not teh bash.
 bash_happy|| return;
 
+################################################################################
 # Main user
 #
 # This section is for customizations for the specific user.
-#-------------------------------------------------------------------------------
-lookup_name="phil.cogbill"
+#
+################################################################################
 umask 0002
 
 
 ################################################################################
-# Shell variables
+# Main user's variables
 ################################################################################
 export PAGER="less"
 export EDITOR="vim"
@@ -34,8 +45,6 @@ export IRCNAME="Federal Holiday"
 export DISPLAY_CONNECT="${DISPLAY}"
 export CUSTOM_SSH_AUTH_SOCK=${HOME}/.ssh/ssh_auth_sock
 export PROMPT_DIRTRIM=3
-
-
 
 # History File Specifics
 #-------------------------------------------------------------------------------
@@ -71,7 +80,6 @@ include bash/home
 include bash/work
 
 include drush
+include git
 include tmux/completion
 
-
-# vim:ft=sh

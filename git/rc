@@ -1,0 +1,19 @@
+#!/bin/bash
+################################################################################
+#
+# git Bash RC File
+#
+# This file is intended to be the entry point for all things git and bash. 
+#
+################################################################################
+GITLIB="${HOMBASE}/git/lib" && test -f $GITLIB && source $GITLIB
+
+if [ -f ~/.gitconfig ]; then
+
+  echo "CHECK: ~/.gitconfig file"
+
+else
+
+  echo "ERROR: ~/.gitconfig file (not found)"
+
+fi

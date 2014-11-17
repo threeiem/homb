@@ -1,12 +1,21 @@
 #!/bin/bash
+################################################################################
+# Bash Library
+#
+# This file contains the library of functions that are called by homb's other
+# files.
+#
+# vim: ft=sh
+#
+################################################################################
 
-#################################################################################
+################################################################################
 #
 # bash_happy
 #
 # Checks to see that we are indeed running teh bash.
 #
-#################################################################################
+################################################################################
 function bash_happy() {
 
   local which=$(which bash > /dev/null)
@@ -26,16 +35,16 @@ function bash_happy() {
 }
 
 
-#################################################################################
+################################################################################
 #
 # test_socket_link
 #
 # Checks for the ssh_auth_sock link to see if it is valid or not.
 #
-#################################################################################
+################################################################################
 function test_socket_link(){
 
-  local broken=$(find "$1" -type l -print0| \
+  local broken=$(find "$1" -type l -print0 2> /dev/null| \
     xargs -r0 file| \
     grep "broken symbolic"| \
     sed -e 's/^\|: *broken symbolic.*$/"/g')
@@ -54,13 +63,13 @@ function test_socket_link(){
 }
 
 
-#################################################################################
+################################################################################
 # 
 # include
 #
 # A quick way to include files for the homb project.
 #
-#################################################################################
+################################################################################
 include(){
 
   if [ -f "${HOMBASE}/${1}" ];  then
@@ -89,45 +98,51 @@ include(){
       return 1 #fail
 
     fi
-
   fi
-
 }
 
-#################################################################################
+
+################################################################################
 # 
-# getGit
+# gitPS1
 #
-# We are going to use this over __get_ps1() because we want to swap the the 
-# symbology for colors on interactive scripts when possible.
+# We are going to use this over __get_ps1() because we want to trap errors and 
+# customize the output.
 #
-#################################################################################
-function getGit(){
+# TODO: Symbology for colors on interactive scripts when possible.
+#
+################################################################################
+function gitPS1(){
 
-  # Get the data from git bash completion and remove the spaces... ugh spaces.
-  GIT_PS1=$(__git_ps1 "(%s)") 
+  local git_ps1="$(__git_ps1 2> /dev/null)"
 
-  if [ "${GIT_PS1}" ]; then
+  if [ "${git_ps1}" ]; then 
+  
+    echo -en "$(__git_ps1 "(%s)")"
+    return 0
 
-    echo -en "$GIT_PS1"
+  else
+
+    # FAILBOAT
+    return 1
 
   fi
 
 }
 
-
-#################################################################################
+################################################################################
 #
 # interactive
 #
 # Check to see if the shell is interactive or not.  Returns a 1 if the shell is
 # not a login/interactive shell.
 #
-#################################################################################
+################################################################################
 function interactive(){
 
   if [ "${PS1}" ]; then
 
+    echo "interactive"
     return 0
 
   else
@@ -135,7 +150,17 @@ function interactive(){
     return 1
 
   fi
+
+#  case $TERM in
+#  
+#    ansi*|screen*|linux*|xterm*|putty-*)
+#  
+#      ;;
+#  
+#    *)
+#      ;;
+#  
+#  esac
+#
+
 }
-
-
-# vim: ft=sh
