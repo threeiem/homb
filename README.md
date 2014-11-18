@@ -48,3 +48,18 @@ if [ -f "${HOME}/.fresh/build/shell.sh" ]; then
 fi
 
 ```
+
+Common Problems
+======
+
+* <b>Not using bash!</b> 
+..* Homb is for bash only. Sorry, maybe another time.
+
+* <b>Non-Interactive Bash</b> 
+..* Check to see if you are running an interative shell (that loads ~/.bash_profile) Do this with this command
+
+```
+shopt login_shell
+```
+
+..* Use the bash -l flag if you are using something like konsole.

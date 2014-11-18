@@ -10,10 +10,10 @@ GITLIB="${HOMBASE}/git/lib" && test -f $GITLIB && source $GITLIB
 
 if [ -f ~/.gitconfig ]; then
 
-  echo "CHECK: ~/.gitconfig file"
+  #echo "CHECK: ~/.gitconfig file"
 
 else
 
-  echo "ERROR: ~/.gitconfig file (not found)"
+  #echo "ERROR: ~/.gitconfig file (not found)"
 
 fi
