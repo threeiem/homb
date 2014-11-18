@@ -3,10 +3,10 @@
   safecrlf = false
   ignorecase = false
 [user]
-	name = threeiem
-	email = threeiem@gmail.com
+  name = threeiem
+  email = threeiem@gmail.com
 [credential]
-	helper = cache --timeout=360000
+  helper = cache --timeout=360000
 [alias]
   st = status
   ci = commit
