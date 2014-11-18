@@ -52,14 +52,17 @@ fi
 Common Problems
 ======
 
-* <b>Not using bash!</b> 
-..* Homb is for bash only. Sorry, maybe another time.
+* <b>Not using bash!</b> Homb is for <b><u>bash only</u></b>. Sorry, maybe another time.
 
-* <b>Non-Interactive Bash</b> 
-..* Check to see if you are running an interative shell (that loads ~/.bash_profile) Do this with this command
+* <b>Non-Interactive Bash</b> Check to see if you are running an interative shell. Check with this command...
 
 ```
 shopt login_shell
 ```
 
-..* Use the bash -l flag if you are using something like konsole.
+* <b>Graphical Does Not Mean Interactive</b> Some terminal programs like konsole do not start bash interactively. For konsole you will need to modify the profile. Here is the command to run bash interactively.
+
+```
+bash -l
+```
+
