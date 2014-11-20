@@ -48,3 +48,21 @@ if [ -f "${HOME}/.fresh/build/shell.sh" ]; then
 fi
 
 ```
+
+Common Problems
+======
+
+* <b>Not using bash!</b> Homb is for <b><u>bash only</u></b>. Sorry, maybe another time.
+
+* <b>Non-Interactive Bash</b> Check to see if you are running an interative shell. Check with this command...
+
+```
+shopt login_shell
+```
+
+* <b>Graphical Does Not Mean Interactive</b> Some terminal programs like konsole do not start bash interactively. For konsole you will need to modify the profile. Here is the command to run bash interactively.
+
+```
+bash -l
+```
+
