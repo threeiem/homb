@@ -1,0 +1,31 @@
+#!/bin/bash
+################################################################################
+# SSH Bash Library
+#
+# SSH specific routines. These help ssh keep track of sessions amoung other 
+# customizations.
+#
+################################################################################
+check_auth_sock() {
+
+  # check initial terminal to see if we are switched
+  # find the real ssh_auth_sock
+  local sym_out="$(test_symlink "${SSH_AUTH_SOCK_LINK}")"
+  local sym_val="$?"
+
+  echo $sym_out
+  echo $sym_val
+
+  if [ 0  ]; then
+
+    echo "lol"
+    export SSH_AUTH_SOCK="${SSH_AUTH_SOCK_LINK}"
+
+  else
+
+    echo "dongs"
+
+  fi
+}
+
+# vim: ft=sh

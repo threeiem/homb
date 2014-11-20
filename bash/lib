@@ -16,7 +16,7 @@
 # Checks to see that we are indeed running teh bash.
 #
 ################################################################################
-function bash_happy() {
+bash_happy() {
 
   local which=$(which bash > /dev/null)
   local alias=$(alias bash &> /dev/null)  
@@ -37,26 +37,47 @@ function bash_happy() {
 
 ################################################################################
 #
-# test_socket_link
+# testlink(FILENAME [TARGET])
 #
 # Checks for the ssh_auth_sock link to see if it is valid or not.
 #
 ################################################################################
-function test_socket_link(){
+test_symlink() {
 
-  local broken=$(find "$1" -type l -print0 2> /dev/null| \
-    xargs -r0 file| \
-    grep "broken symbolic"| \
-    sed -e 's/^\|: *broken symbolic.*$/"/g')
+  local link=$1
+  local target=$2
 
-  if [ $? -ne 0 ]; then
+  if [ "$target" != "" ]; then
+  
+    if [ "$(readlink $link)" != "$target" ]; then 
 
-    #echo "WARNING: Issue with SSH_AUTH_SOCK link."
-    return 1
+      echo "$link =/=> $target"
+
+      return 1
+
+    fi
+
+  fi
+
+  if [  -L "$link" ]; then
+
+    if [ -e "$link" ]; then 
+
+      return 0
+
+    else
+
+      echo "$link is a dead link."
+
+      return 1
+
+    fi
 
   else
 
-    return 0
+    echo "$link is not a link."
+
+    return 1
 
   fi
 
@@ -70,7 +91,7 @@ function test_socket_link(){
 # A quick way to include files for the homb project.
 #
 ################################################################################
-include(){
+include() {
 
   if [ -f "${HOMBASE}/${1}" ];  then
 
@@ -109,10 +130,10 @@ include(){
 # We are going to use this over __get_ps1() because we want to trap errors and 
 # customize the output.
 #
-# TODO: Symbology for colors on interactive scripts when possible.
+# TODO Colors for Symbology on interactive scripts when possible.
 #
 ################################################################################
-function gitPS1(){
+gitPS1() {
 
   local git_ps1="$(__git_ps1 2> /dev/null)"
 
@@ -130,6 +151,7 @@ function gitPS1(){
 
 }
 
+
 ################################################################################
 #
 # interactive
@@ -138,11 +160,11 @@ function gitPS1(){
 # not a login/interactive shell.
 #
 ################################################################################
-function interactive(){
+interactive() {
 
   if [ "${PS1}" ]; then
 
-    echo "interactive"
+    echo "Interactive"
     return 0
 
   else

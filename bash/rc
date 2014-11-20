@@ -1,34 +1,42 @@
+#!/bin/bash
 ###############################################################################
 # Bash Shell Resouce File
 #
 # Contains all the magic for Bash shell with Homb. This all pivots on what is 
-# set in the "HOMBACE" variable. All the functions are defined in 
+# set in the "HOMBASE" variable. All the functions are defined in 
 # $HOMBASE/bashlib for this file.
-#
-# vim:ft=sh
 #
 ###############################################################################
 
 ################################################################################
 #  Homb Specifics
 # 
-# Configurations required by Homb to load and work correctly. You must set the
-# REFERENCE_USER variable to the name of the login user. HOMBASE is the root of
-# the Homb project (ie. ~/.homb) 
+# Configurations required by Homb to load and work correctly. HOMBASE is the 
+# root of # the Homb project (ie. ~/.homb)  This is put here rather than have
+# bash application specifics in a "homb" specific file.
 #
 ################################################################################
-HOMBASE="${HOME}/.homb" # NO TRAILING SLASH
+export HOMBASE="${HOME}/.homb" # NO GD TRAILING SLASH!!!
 
 # Load the bashlib library - Gives us all the other helpers and files for bash.
-BASHLIB="${HOMBASE}/bash/lib" && test -f $BASHLIB && source $BASHLIB
+export BASHLIB="${HOMBASE}/bash/lib" && test -f $BASHLIB && source $BASHLIB
 
-# Leave if it's not teh bash.
+# Not teh bash, not happy.
 bash_happy|| return;
+
+################################################################################
+# Application Resources !!!WARNING!!!   ORDER MATTERS... srsly.    !!!WARNING!!!
+################################################################################
+include ssh
+include git
+include svn
+include tmux/completion
+include drush
 
 ################################################################################
 # Main user
 #
-# This section is for customizations for the specific user.
+# User customizations and semi-os specific application environment stuff.
 #
 ################################################################################
 umask 0002
@@ -37,41 +45,38 @@ umask 0002
 ################################################################################
 # Main user's variables
 ################################################################################
-export PAGER="less"
 export EDITOR="vim"
-export LC_ALL="C"
 export LANG="en_US.UFT-8"
-export IRCNAME="Federal Holiday"
-export DISPLAY_CONNECT="${DISPLAY}"
-export CUSTOM_SSH_AUTH_SOCK=${HOME}/.ssh/ssh_auth_sock
+export LC_ALL="C"
+export PAGER="less"
 export PROMPT_DIRTRIM=3
 
-# History File Specifics
+# Helpers for later use
+#-------------------------------------------------------------------------------
+export DISPLAY_CONNECT="${DISPLAY}"
+
+# History 
 #-------------------------------------------------------------------------------
 export HISTTIMEFORMAT="%F %T - "
 export HISTFILESIZE="4000000"
 export HISTSIZE="4000000"
 export HISTCONTROL="ignoredups"
 
-# VCS variables
+
+# ssh
 #-------------------------------------------------------------------------------
-export SVN_EDITOR="vim"
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
 
-if [ $(test_socket_link "${CUSTOM_SSH_AUTH_SOCK}") ]; then
-
-  export SSH_AUTH_SOCK="${CUSTOM_SSH_AUTH_SOCK}"
-
-fi
+# irc
+#-------------------------------------------------------------------------------
+export IRCNAME="Federal Holiday"
 
 
+################################################################################
 # Export the path (important)
-#-------------------------------------------------------------------------------
+################################################################################
 export PATH=$PATH
 
-# Include other resource files - The order matters. :-\
+# Include other resource files - The order matters... SRSLY :-\
 #-------------------------------------------------------------------------------
 include bash/alias
 include bash/color
@@ -79,7 +84,5 @@ include bash/ps1
 include bash/home
 include bash/work
 
-include drush
-include git
-include tmux/completion
 
+# vim:ft=sh
