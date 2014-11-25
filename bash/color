@@ -79,6 +79,11 @@ On_IPurple='\e[0;105m'  # Purple
 On_ICyan='\e[0;106m'    # Cyan
 On_IWhite='\e[0;107m'   # White
 
+if [ "${TERM_PROGRAM}" == "Apple_Terminal" ]; then
+  export CLICOLOR=1
+  export LSCOLORS=ExFxBxDxCxegedabagacad
+fi
+
 ################################################################################
 # vim:ft=sh
 # vim:syntax=sh
