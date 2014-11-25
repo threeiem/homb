@@ -6,21 +6,37 @@
 # customizations.
 #
 ################################################################################
+
+
+#################################################################################
+# Set Auth Sock
+#
+# Sets the value of the SSH_AUTH_SOCK variable to the location of the symlink 
+# that gets added to ${HOME}/.ssh/ssh_auth_sock ($SSH_AUTH_SOCK_LNIK)
+#
+#################################################################################
+set_auth_sock() {
+
+ export SSH_AUTH_SOCK="$(file "${SSH_AUTH_SOCK}" |cut -f 2 -d\`|cut -f 1 -d\')"
+
+}
+
+
+#################################################################################
+# Check for Valid Auth Sock
+#
+# This checks to make sure the symbolic link is ok. If it's is not it will call
+# set_auth_sock() to correct the issue.
+#
+#################################################################################
 check_auth_sock() {
 
   # check initial terminal to see if we are switched
   # find the real ssh_auth_sock
-  local sym_out="$(test_symlink "${SSH_AUTH_SOCK_LINK}")"
-  local sym_val="$?"
-
-  echo $sym_out
-  echo $sym_val
-
-  if [ 0  ]; then
+  if [ "$(test_symlink "${SSH_AUTH_SOCK_LINK}")" ]; then 
 
     echo "lol"
-    export SSH_AUTH_SOCK="${SSH_AUTH_SOCK_LINK}"
-
+    set_auth_sock
   else
 
     echo "dongs"
