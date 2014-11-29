@@ -18,6 +18,7 @@
 set_auth_sock() {
 
  export SSH_AUTH_SOCK="$(file "${SSH_AUTH_SOCK}" |cut -f 2 -d\`|cut -f 1 -d\')"
+ echo "set_auth_sock(${SSH_AUTH_SOCK})"
 
 }
 
@@ -35,11 +36,14 @@ check_auth_sock() {
   # find the real ssh_auth_sock
   if [ "$(test_symlink "${SSH_AUTH_SOCK_LINK}")" ]; then 
 
-    echo "lol"
     set_auth_sock
+
   else
 
-    echo "dongs"
+    echo "check_auth_sock(): failed"
+    return 13;
+    # Need to fix what happens when the autsock symlink fails.
+    # find new symbolic link based on SSH_AUTH_SOCK.
 
   fi
 }

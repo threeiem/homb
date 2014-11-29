@@ -1,3 +1,4 @@
+#!/bin/bash
 #################################################################################
 # ~/.homb/bash/ps1
 #
@@ -10,22 +11,21 @@ COLOR_SU="${IYellow}"
 COLOR_PATH="${Green}"
 COLOR_HOST="${IWhite}"
 
-# TODO Sybology conversion for gitPS1()
-COLOR_GIT_UNTRACKED="${Yellow}"
-
 # Pick the prompt based on the system
-# TODO Refactor this to reduce the amount of repeated code.. ugh. WTF.
 #------------------------------------------ -------------------------------------
 PROMPT_BASIC='\u@\h \$ ' #basic prompt
 
-PROMPT_USER='$(echo -en "${COLOR_USER}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}") $(gitPS1)]\n\$ '; 
+# TODO Refactor to reduce the amount of repeated WTF.
+PROMPT_USER='$(echo -en "${COLOR_USER}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}")]\n$(gitPS1)\$ '; 
 
-PROMPT_SU='$(echo -en "${COLOR_SU}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}") $(gitPS1)]\n\$ '; 
+# TODO Refactor to reduce WTF.
+PROMPT_SU='$(echo -en "${COLOR_SU}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}")] $(gitPS1)\n\$ '; 
 
+# TODO Refactor to reduce repeated WTF.
 PROMPT_ADMIN='$(echo -en "${COLOR_ADMIN}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}") $(gitPS1)]\n\$ '; 
 
 
-# Switch the prompt based on the terminal we are using.
+# Switch the prompt based on the (TODO terminal and) user we are using.
 #-------------------------------------------------------------------------------
 if [ $(interactive) ]; then
 

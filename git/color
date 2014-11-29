@@ -1,0 +1,4 @@
+# TODO Sybology conversion for gitPS1()
+COLOR_GIT_UNTRACKED="${Yellow}"
+
+# vim: ft=sh

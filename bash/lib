@@ -5,8 +5,6 @@
 # This file contains the library of functions that are called by homb's other
 # files.
 #
-# vim: ft=sh
-#
 ################################################################################
 
 ################################################################################
@@ -39,7 +37,9 @@ bash_happy() {
 #
 # testlink(FILENAME [TARGET])
 #
-# Checks for the ssh_auth_sock link to see if it is valid or not.
+# Checks for the symbolic link FILENAME to see if it is valid or not. If there 
+# is a TARGET path string passed then testlink will test to see if the link is a
+# link and if it links to the TARGET path.
 #
 ################################################################################
 test_symlink() {
@@ -52,7 +52,6 @@ test_symlink() {
     if [ "$(readlink $link)" != "$target" ]; then 
 
       echo "$link =/=> $target"
-
       return 1
 
     fi
@@ -137,7 +136,7 @@ gitPS1() {
 
   local git_ps1="$(__git_ps1 2> /dev/null)"
 
-  if [ "${git_ps1}" ]; then 
+  if [ "${git_ps1}" != "" ]; then 
   
     echo -en "$(__git_ps1 "(%s)")"
     return 0
@@ -186,3 +185,5 @@ interactive() {
 #
 
 }
+
+# vim: ft=sh

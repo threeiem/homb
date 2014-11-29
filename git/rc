@@ -9,6 +9,7 @@
 #GITLIB="${HOMBASE}/git/lib" && test -f $GITLIB && source $GITLIB
 
 include git/completion
+include git/color
 
 if [ -f ~/.gitconfig ]; then
 

@@ -62,10 +62,6 @@ export HISTFILESIZE="4000000"
 export HISTSIZE="4000000"
 export HISTCONTROL="ignoredups"
 
-
-# ssh
-#-------------------------------------------------------------------------------
-
 # irc
 #-------------------------------------------------------------------------------
 export IRCNAME="Federal Holiday"
@@ -81,8 +77,10 @@ export PATH=$PATH
 include bash/alias
 include bash/color
 include bash/ps1
-include bash/home
-include bash/work
+
+# Local resouces, not loaded if they are not there, loaded last to overide all.
+include home
+include work
 
 
 # vim:ft=sh
