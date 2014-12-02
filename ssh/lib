@@ -17,8 +17,29 @@
 #################################################################################
 set_auth_sock() {
 
- export SSH_AUTH_SOCK="$(file "${SSH_AUTH_SOCK}" |cut -f 2 -d\`|cut -f 1 -d\')"
- echo "set_auth_sock(${SSH_AUTH_SOCK})"
+
+ if [ -S $SSH_AUTH_SOCK ]; then
+
+   echo "SSH_AUTH_SOCK is a socket: GOOD."
+
+ else
+
+   if [ $(test_symlink $SSH_AUTH_SOCK_LINK) ]; then 
+
+     target="${SSH_AUTH_SOCK_LINK}"
+
+   else
+
+     echo "set_auth_sock(FAIL)"
+     return 2
+
+   fi
+
+ fi
+
+ #export SSH_AUTH_SOCK="$(file "${target}" |cut -f 2 -d\`|cut -f 1 -d\')"
+ #echo "set_auth_sock(${SSH_AUTH_SOCK})"
+ #return 0;
 
 }
 
