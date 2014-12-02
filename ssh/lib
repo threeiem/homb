@@ -42,7 +42,7 @@ check_auth_sock() {
 
     echo "check_auth_sock(): failed"
     return 13;
-    # Need to fix what happens when the autsock symlink fails.
+    # Need to fix what happens when the authsock symlink fails.
     # find new symbolic link based on SSH_AUTH_SOCK.
 
   fi

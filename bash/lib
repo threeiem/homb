@@ -61,7 +61,8 @@ test_symlink() {
   if [  -L "$link" ]; then
 
     if [ -e "$link" ]; then 
-
+ 
+      echo "$link is good."
       return 0
 
     else
