@@ -17,56 +17,40 @@
 #################################################################################
 set_auth_sock() {
 
+  if [ ! -S ${SSH_AUTH_SOCK_LINK} ]; then
 
- if [ -S $SSH_AUTH_SOCK ]; then
+    rm $SSH_AUTH_SOCK_LINK
 
-   echo "SSH_AUTH_SOCK is a socket: GOOD."
+    if [ ! -S $SSH_AUTH_SOCK ]; then
 
- else
+       # Make a new socket
+       eval $(ssh-agent|grep ^SSH)
 
-   if [ $(test_symlink $SSH_AUTH_SOCK_LINK) ]; then 
+    fi
 
-     target="${SSH_AUTH_SOCK_LINK}"
-
-   else
-
-     echo "set_auth_sock(FAIL)"
-     return 2
-
-   fi
-
- fi
-
- #export SSH_AUTH_SOCK="$(file "${target}" |cut -f 2 -d\`|cut -f 1 -d\')"
- #echo "set_auth_sock(${SSH_AUTH_SOCK})"
- #return 0;
-
-}
-
-
-#################################################################################
-# Check for Valid Auth Sock
-#
-# This checks to make sure the symbolic link is ok. If it's is not it will call
-# set_auth_sock() to correct the issue.
-#
-#################################################################################
-check_auth_sock() {
-
-  # check initial terminal to see if we are switched
-  # find the real ssh_auth_sock
-  if [ "$(test_symlink "${SSH_AUTH_SOCK_LINK}")" ]; then 
-
-    set_auth_sock
+    ln -s $SSH_AUTH_SOCK $SSH_AUTH_SOCK_LINK
+    export SSH_AUTH_SOCK="${SSH_AUTH_SOCK_LINK}"
 
   else
 
-    echo "check_auth_sock(): failed"
-    return 13;
-    # Need to fix what happens when the authsock symlink fails.
-    # find new symbolic link based on SSH_AUTH_SOCK.
+    # This means we may have a dead symbolic link and usually happens with 
+    # long duration logins or using terminals multiplexers like tmux or
+    # GNU screen.
+    test_symlink $SSH_AUTH_SOCK_LINK  $SSH_AUTH_SOCK 1> /dev/null
+
+    if [ "$?" != 0 ]; then 
+
+      rm $SSH_AUTH_SOCK_LINK
+      eval $(ssh-agent|grep  ^SSH)
+      ln -s $SSH_AUTH_SOCK $SSH_AUTH_SOCK_LINK
+      export SSH_AUTH_SOCK="${SSH_AUTH_SOCK_LINK}"
+
+    fi
 
   fi
+
+  return 0
+
 }
 
 # vim: ft=sh

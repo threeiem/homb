@@ -24,7 +24,7 @@ alias cdo='cd $OLDPWD'
 alias cdold='cd $OLDPWD'
 alias xerox='cp -a'
 alias shredd='shred -n 100 -u  -v -x -z'
-
+alias homb='source ~/.bash_profile; fresh'
 # Processes
 # -----------------------------------------------------------------------------
 alias psu='ps -x|grep -v grep|grep -v ps'
@@ -61,6 +61,7 @@ alias atn='ant'
 
 # tmux
 #-------------------------------------------------------------------------------
+# TODO Remove this and use fresh. Unpure bash magics in the bash rc. :-(
 alias tmux='tmux -f ${HOMBASE}/tmux/rc'
 
 # Humor me baby.

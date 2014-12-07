@@ -35,7 +35,7 @@ bash_happy() {
 
 ################################################################################
 #
-# testlink(FILENAME [TARGET])
+# test_symlink(FILENAME [TARGET])
 #
 # Checks for the symbolic link FILENAME to see if it is valid or not. If there 
 # is a TARGET path string passed then testlink will test to see if the link is a
@@ -51,8 +51,12 @@ test_symlink() {
   
     if [ "$(readlink $link)" != "$target" ]; then 
 
-      echo "$link =/=> $target"
+      echo "$link -/-> $target"
       return 1
+
+    else
+
+      echo "$link ---> $target"
 
     fi
 
@@ -68,7 +72,6 @@ test_symlink() {
     else
 
       echo "$link is a dead link."
-
       return 1
 
     fi
@@ -76,7 +79,6 @@ test_symlink() {
   else
 
     echo "$link is not a link."
-
     return 1
 
   fi
