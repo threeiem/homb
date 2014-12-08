@@ -115,7 +115,7 @@ include() {
         # Load the libraries needed for the resource file.
         if [[ ${1} != *"/"* ]]; then
 
-          export ${1^^}LIB="${HOMBASE}/${1}/lib" && test -f ${1^^}LIB && source "${1^^}LIB"
+          export ${1^^}LIB="${HOMBASE}/${1}/lib" && test -f "${1^^}LIB" && source "${1^^}LIB"
 
         fi
 
