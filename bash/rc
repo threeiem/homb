@@ -78,7 +78,8 @@ include bash/alias
 include bash/color
 include bash/ps1
 
-# Local resouces, not loaded if they are not there, loaded last to overide all.
+# Local resouces, loaded last to overide all.
+#    (not loaded if they are not there)
 include home
 include work
 
