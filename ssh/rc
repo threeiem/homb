@@ -8,9 +8,6 @@
 # multiple logins. The SSH specific variables are stored here.
 ################################################################################
 
-# Load the ssh function library.
-export SSHLIB="${HOMBASE}/ssh/lib" && test -f $SSHLIB && source $SSHLIB
-
 # Place to store the symbolic link to the auth_sock.
 export SSH_AUTH_SOCK_LINK="${HOME}/.ssh/ssh_auth_sock"
 

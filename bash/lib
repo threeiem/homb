@@ -105,14 +105,21 @@ include() {
       
       # DANGER! We don't include tmux rc because it causes major problems.
       # There is no issue if we don't include it so exit gracefully.
+      # See https://github.com/threeiem/homb/issues/2
       if [ "${1}" == "tmux" ]; then
        
         return 0 
 
       else
 
-        source "${HOMBASE}/${1}/rc"
+        # Load the libraries needed for the resource file.
+        if [[ ${1} != *"/"* ]]; then
 
+          export ${1^^}LIB="${HOMBASE}/${1}/lib" && test -f ${1^^}LIB && source "${1^^}LIB"
+
+        fi
+
+        source "${HOMBASE}/${1}/rc"
 
       fi
 

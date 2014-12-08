@@ -6,8 +6,6 @@
 # This file is intended to be the entry point for all things git and bash. 
 #
 ################################################################################
-#GITLIB="${HOMBASE}/git/lib" && test -f $GITLIB && source $GITLIB
-
 include git/completion
 include git/color
 
