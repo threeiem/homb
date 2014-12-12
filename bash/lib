@@ -107,16 +107,26 @@ include() {
       # There is no issue if we don't include it so exit gracefully.
       # See https://github.com/threeiem/homb/issues/2
       if [ "${1}" == "tmux" ]; then
-       
+      
+        echo "Move ${HOMBASE}/tmux to fresh... derrrrr!"
         return 0 
 
       else
 
         # Load the libraries needed for the resource file.
+        # This enforces the default for $1/rc and $1/lib existing.
         if [[ ${1} != *"/"* ]]; then
 
-          export ${1^^}LIB="${HOMBASE}/${1}/lib" && test -f "${1^^}LIB" && source "${1^^}LIB"
+          local libPath="${HOMBASE}/${1}/lib"
+          local libVar="${1^^}LIB"
 
+          export $libVar=$libPath
+
+          if [ -f $libPath ]; then
+
+            source $libPath
+
+          fi
         fi
 
         source "${HOMBASE}/${1}/rc"

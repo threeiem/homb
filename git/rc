@@ -9,16 +9,16 @@
 include git/completion
 include git/color
 
-if [ -f ~/.gitconfig ]; then
-
-  echo "CHECK: ~/.gitconfig file"
-
-
-else
-
-  echo "ERROR: ~/.gitconfig file (not found)"
-
-fi
+#if [ -f ~/.gitconfig ]; then
+#
+#  echo "CHECK: ~/.gitconfig file"
+#
+#
+#else
+#
+#  echo "ERROR: ~/.gitconfig file (not found)"
+#
+#fi
 
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
