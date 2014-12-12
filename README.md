@@ -6,7 +6,11 @@
 The .homb project is set of shell extensions for console applications. It also
 uses <a href="http://freshshell.com/">fresh</a> for managing application 
 configurations. Currently we only support newer versions of bash on Linux.
-Development for bash on Mac OSX will begin in early spring.
+
+Schedule
+==========
+* Development for bash on Mac OSX will begin in early spring, 2015.
+* Development for zsh on Linux will begin in later summer 2015.
 
 ## Install .homb
 
@@ -23,7 +27,7 @@ git clone https://github.com/threeiem/homb ~/.homb
 Now add this line to your ~/.bash_profile file. Do NOT add this line to .bashrc!
 
 ```
-hombrc="${HOME}/.homb/rc" && test -f $hombrc && source $hombrc
+HRC="${HOME}/.homb/rc" && test -f $HRC && source $HRC;unset HRC
 
 ```
 
@@ -48,9 +52,7 @@ Once  <a href="http://freshshell.com/">fresh</a> is downloaded add this to your 
 
 
 ```
-if [ -f "${HOME}/.fresh/build/shell.sh" ]; then source "${HOME}/.fresh/build/shell.sh" fi
-
-hFresh="${HOME}/.fresh/build/shell.sh" && test -f $hFresh && source $hFresh
+FSH="${HOME}/.fresh/build/shell.sh" && test -f $FSH && source $FSH;unset FSH
 
 ```
 
