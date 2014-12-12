@@ -9,8 +9,9 @@ configurations. Currently we only support newer versions of bash on Linux.
 
 ## Install .homb
 
-For this example we install .homb into ~/.homb  Clone .homb into your ${HOME} 
-directory "~". Git is required for .homb to work.
+Git is required for .homb to work. For this example we install .homb into the
+~/.homb directory. Here is how to clone .homb into your "${HOME}" or "~" 
+directory.
 
 ```
 git clone https://github.com/threeiem/homb ~/.homb
