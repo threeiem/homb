@@ -1,4 +1,3 @@
-#!/bin/bash
 ###############################################################################
 # Bash Shell Resouce File
 #
@@ -7,31 +6,6 @@
 # $HOMBASE/bashlib for this file.
 #
 ###############################################################################
-
-################################################################################
-#  Homb Specifics
-# 
-# Configurations required by Homb to load and work correctly. HOMBASE is the 
-# root of # the Homb project (ie. ~/.homb)  This is put here rather than have
-# bash application specifics in a "homb" specific file.
-#
-################################################################################
-export HOMBASE="${HOME}/.homb" # NO GD TRAILING SLASH!!!
-
-# Load the bashlib library - Gives us all the other helpers and files for bash.
-export BASHLIB="${HOMBASE}/bash/lib" && test -f $BASHLIB && source $BASHLIB
-
-# Not teh bash, not happy.
-bash_happy|| return;
-
-################################################################################
-# Application Resources !!!WARNING!!!   ORDER MATTERS... srsly.    !!!WARNING!!!
-################################################################################
-include ssh
-include git
-include svn
-include tmux/completion
-include drush
 
 ################################################################################
 # Main user
@@ -82,6 +56,5 @@ include bash/ps1
 #    (not loaded if they are not there)
 include home
 include work
-
 
 # vim:ft=sh

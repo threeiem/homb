@@ -1,0 +1,2 @@
+# vim:ft=sh
+alias sshock='set_ssh_auth_sock'

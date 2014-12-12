@@ -1,56 +1,60 @@
 .homb
 ====
 
-# .homb uses fresh and bash
+# Welcome .homb 
 
-.homb is a project for migratng dotfiles for use with 
-<a href="http://freshshell.com/">fresh</a>. This project is currently migrating
-to fresh. There is years of cruft and hackery we need to clean out to integrate 
-these with fresh. .homb is currently setup for bash only.
+The .homb project is set of shell extensions for console applications. It also
+uses <a href="http://freshshell.com/">fresh</a> for managing application 
+configurations. Currently we only support newer versions of bash on Linux.
+Development for bash on Mac OSX will begin in early spring.
 
 ## Install .homb
 
-We need to install fetch manually at this point. Here is how:
+For this example we install .homb into ~/.homb  Clone .homb into your ${HOME} 
+directory "~". Git is required for .homb to work.
 
 ```
 git clone https://github.com/threeiem/homb ~/.homb
 
 ```
 
-.homb is seperate, but migrating to fresh so for now we need to source the 
-bash resource file for it begin working. This will be baked into fresh 
-later.
+## Configure .homb
+
+Now add this line to your ~/.bash_profile file. Do NOT add this line to .bashrc!
 
 ```
-# .homb dotfiles
-if [ -f "${HOME}/.homb/bash/rc" ]; then
-  source "${HOME}/.homb/bash/rc"
-fi
+hombrc="${HOME}/.homb/rc" && test -f $hombrc && source $hombrc
 
 ```
+
+# Fresh and .homb
+
+The .homb project is seperate, but depends on fresh to handle the application
+configuration files. Fresh is the right hand for .homb and functions poorly 
+without <a href="http://freshshell.com/">fresh</a>.
 
 ## Install fresh
 
-Install fresh with the following:
+Install  <a href="http://freshshell.com/">fresh</a> with the following:
 
 ```
 bash -c "`curl -sL get.freshshell.com`"
 
 ```
 
-Once fresh is downloaded add this to your ~/.bashrc file...
+## Configure fresh
+
+Once  <a href="http://freshshell.com/">fresh</a> is downloaded add this to your ~/.bash_profile file.
 
 
 ```
-# fresh dotfiles
-if [ -f "${HOME}/.fresh/build/shell.sh" ]; then
-  source "${HOME}/.fresh/build/shell.sh"
-fi
+if [ -f "${HOME}/.fresh/build/shell.sh" ]; then source "${HOME}/.fresh/build/shell.sh" fi
+
+hFresh="${HOME}/.fresh/build/shell.sh" && test -f $hFresh && source $hFresh
 
 ```
 
-Common Problems
-======
+# Common Problems
 
 * <b>Not using bash!</b> Homb is for <b><u>bash only</u></b>. Sorry, maybe another time.
 
