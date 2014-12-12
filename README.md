@@ -19,7 +19,8 @@ git clone https://github.com/threeiem/homb ~/.homb
 
 ## Configure .homb
 
-Now add this line to your ~/.bash_profile file. Do NOT add this line to .bashrc!
+Now add this line to your ~/.bash_profile file. <b>Do NOT add this line to the
+~/.bashrc file!</b> The .homb project is intended for interactive shells only.
 
 ```
 HRC="${HOME}/.homb/rc" && test -f $HRC && source $HRC;unset HRC
