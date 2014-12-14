@@ -14,7 +14,7 @@ export HOMBASE="${HOME}/.homb" # NO GD TRAILING SLASH!!!
 export HOMBLIB="${HOMBASE}/lib" && test -f $HOMBLIB && source $HOMBLIB
 
 # If you're not a hombie then you have to leave.
-hombie || return;
+hombie 2> /dev/null || return;
 
 ################################################################################
 # Bash Resources
