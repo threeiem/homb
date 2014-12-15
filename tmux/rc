@@ -4,6 +4,7 @@
 # Homb tmux shell extentions resource file.
 #
 ################################################################################
+include tmux/alias
 include tmux/completion
 
 # vim:ft=sh

@@ -3,5 +3,27 @@
 #
 # Homb alias file for tmux.
 ################################################################################
-tomb="tmux attach-session -t"
+
+################################################################################
+# tomb
+#
+# Alias for tmux attach-session -t [$1]
+#
+################################################################################
+tomb() {
+
+ if [ -z $1 ]; then
+
+   echo "Usage: tomb <session-name>"
+   echo "  ex.) tomb kali"
+   return 1
+
+ fi
+
+ tmux attach-session -t $1
+
+}
+
+alias tls='tmux list-sessions 2> /dev/null'
+
 # vim:ft=sh
