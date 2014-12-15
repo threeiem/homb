@@ -1,36 +1,39 @@
-.homb
+Homb
 ====
 
-# Welcome .homb 
+# Welcome Homb 
 
-The .homb project is set of shell extensions for console applications. It also
-uses <a href="http://freshshell.com/">fresh</a> for managing application 
-configurations. Currently we only support newer versions of bash on Linux.
+The Homb project is set of shell extensions for console applications. It is 
+intended for use with <a href="http://freshshell.com/">fresh</a> for managing 
+application configurations. 
 
-## Install .homb
+Currently we have only tested with newer versions of bash on CentOS/Redhat.
 
-Git is required for .homb to work. For this example we install .homb into the
-~/.homb directory. Here is how to clone .homb into your "${HOME}" or "~" 
-directory.
+## Install Homb
+
+Homb works only with newer versions of bash and also needs git. 
+
+### Just Homb
+
+For this example we install Homb into the ~/.homb directory. Here is how to 
+clone .homb into your "${HOME}" or "~" directory.
 
 ```
 git clone https://github.com/threeiem/homb ~/.homb
 ```
-
-## Configure .homb
-
 Now add this line to your ~/.bash_profile file. <b>Do NOT add this line to the
 ~/.bashrc file!</b> The .homb project is intended for interactive shells only.
 
 ```
-HRC="${HOME}/.homb/rc" && test -f $HRC && source $HRC;unset HRC
+export HOMBASE="${HOME}/.homb"
+source $HOMBASE/rc
 ```
 
-## Fresh and .homb
+### Homb with Fresh
 
-The .homb project is seperate, but depends on fresh to handle the application
-configuration files. Fresh is the right hand for .homb and functions poorly 
-without <a href="http://freshshell.com/">fresh</a>.
+The Homb project works with <a href="http://freshshell.com/">fresh</a> to handle
+the application configuration files. Fresh is the right hand for .homb and 
+functions poorly without <a href="http://freshshell.com/">fresh</a>.
 
 ### Install fresh
 
@@ -40,20 +43,21 @@ Install  <a href="http://freshshell.com/">fresh</a> with the following:
 bash -c "`curl -sL get.freshshell.com`"
 ```
 
-### Configure fresh
+### Configure Bash (~/.bash_profile)
 
-Once  <a href="http://freshshell.com/">fresh</a> is downloaded add this to your ~/.bash_profile file.
-
+Once  <a href="http://freshshell.com/">fresh</a> is downloaded add this to your
+~/.bash_profile file (not ~/.bashrc).
 
 ```
-FSH="${HOME}/.fresh/build/shell.sh" && test -f $FSH && source $FSH;unset FSH
+# Set $HOMBASE before source of Fresh's shell.sh
+export HOMBASE="${HOME}/.homb"
+fpath="${HOME}/.fresh/build/shell.sh" && test -f $fpath && source $fpath
+
 ```
+### Configure (~/.freshrc)
 
-## Schedule
-
-* Development for bash on Mac OSX will begin in early spring, 2015.
-* Development for zsh on Linux will begin in later summer 2015.
-
+Add this to the .freshrc file. The location of this file can be configured so we
+are using ~/.freshrc in the home directory.
 
 ## Common Problems
 

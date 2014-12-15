@@ -92,51 +92,33 @@ include() {
 
     if [ -f "${HOMBASE}/${1}/rc" ]; then
       
-      # DANGER! We don't include tmux rc because it causes major problems.
-      # There is no issue if we don't include it so exit gracefully.
-      # See https://github.com/threeiem/homb/issues/2
-      if [ "${1}" == "tmux" ]; then
-      
-        echo "Move ${HOMBASE}/tmux to fresh... derrrrr!"
-        return 0 
-
-      else
-
-        # Load the libraries needed for the resource file.
-        # This enforces the default for $1/rc and $1/lib existing.
-        if [[ ${1} != *"/"* ]]; then
+      # Load the libraries needed for the resource file.
+      # This enforces the default for $1/rc and $1/lib existing.
+      if [[ ${1} != *"/"* ]]; then
 
 
-          local pathLib="${HOMBASE}/${1}/lib"
+        local pathLib="${HOMBASE}/${1}/lib"
 
-          if [ -f $pathLib ]; then
+        if [ -f $pathLib ]; then
 
-            source $pathLib
-
-          fi
-
-          local pathAlias="${HOMEBASE}/${1}/alias"
-
-          if [ -f $pathAlias ]; then
-
-            source $pathAlias
-
-          fi
+          source $pathLib
 
         fi
 
-        source "${HOMBASE}/${1}/rc"
+        local pathAlias="${HOMEBASE}/${1}/alias"
+
+        if [ -f $pathAlias ]; then
+
+          source $pathAlias
+
+        fi
 
       fi
 
-    else
-
-      return 1 #fail
+      source "${HOMBASE}/${1}/rc"
 
     fi
   fi
 }
-
-
 
 # vim:ft=sh
