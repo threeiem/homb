@@ -5,24 +5,56 @@
 ################################################################################
 
 ################################################################################
+# Alias Functions
+################################################################################
+
+################################################################################
 # tomb
 #
-# Alias for tmux attach-session -t [$1]
+# Alias for tmux attach-session -t [$1], but will connect to the first session.
 #
 ################################################################################
 tomb() {
 
- if [ -z $1 ]; then
+  local session_ls=$(tmux list-sessions 2> /dev/null|cut -f 1 -d\:|head -1)
 
-   echo "Usage: tomb <session-name>"
-   echo "  ex.) tomb kali"
-   return 1
+  if [ -z $1 ]; then
 
- fi
+    if [ -z $session_ls ]; then 
 
- tmux attach-session -t $1
+      echo "No sessions found."
+      tmux new-session -s tomb
+      return 1
 
+    else
+
+      tmux attach-session -t $session_ls
+
+    fi
+
+  else
+
+    session_ls=$(tmux list-sessions 2> /dev/null|cut -f 1 -d\:|grep $1)
+
+    if [ -z $session_ls ]; then
+
+      echo "Session ${1} not found."
+      tmux new-session -s $1
+
+
+    else
+
+      echo "tmux: Attaching session ${session_ls}"
+      tmux attach-session -t $1
+ 
+    fi
+
+  fi
 }
+
+################################################################################
+# Aliases
+################################################################################
 
 alias tls='tmux list-sessions 2> /dev/null'
 
