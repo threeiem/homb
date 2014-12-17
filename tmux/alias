@@ -12,6 +12,7 @@
 # tomb
 #
 # Alias for tmux attach-session -t [$1], but will connect to the first session.
+# TODO Add logic for multiple sessions and prompt the user for the correct one.
 #
 ################################################################################
 tomb() {
