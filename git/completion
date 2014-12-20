@@ -125,11 +125,12 @@ __git_ps1 ()
 			}
 		fi
 
-		local w
-		local i
-		local s
-		local u
+		local w # UNSTAGED
+		local i # STAGED
+		local s # STASHED
+		local u # UNTRACKED 
 		local c
+    local le_mod # Modification flag
 
 		if [ "true" = "$(git rev-parse --is-inside-git-dir 2>/dev/null)" ]; then
 			if [ "true" = "$(git rev-parse --is-bare-repository 2>/dev/null)" ]; then
@@ -159,8 +160,38 @@ __git_ps1 ()
 			fi
 		fi
 
+    if [ -n $GIT_PS1_COLOR_UNSTAGED ]; then
+      w="${GIT_PS1_COLOR_UNSTAGED}${w}${Color_Reset}"
+      le_mod="true"
+    fi
+
+    if [ -n $GIT_PS1_COLOR_STAGED ]; then
+      i="${GIT_PS1_COLOR_STAGED}${i}${Color_Reset}"
+      le_mod="true"
+    fi
+
+    if [ -n $GIT_PS1_COLOR_STASHED ]; then
+      s="${GIT_PS1_COLOR_STASHED}${s}${Color_Reset}"
+      le_mod="true"
+    fi
+
+    if [ -n $GIT_PS1_COLOR_UNTRACKED ]; then
+      u="${GIT_PS1_COLOR_UNTRACKED}${u}${Color_Reset}"
+      le_mod="true"
+    fi
+
 		local f="$w$i$s$u"
-		printf "${1:- (%s)}" "$c${b##refs/heads/}${f:+ $f}$r"
+
+    if [ -n le_mod ]; then
+      if [ -n $GIT_COLOR_MODIFIED ]; then
+		    printf "${1:- (%s)}" "$c${GIT_COLOR_MODIFIED}${b##refs/heads/}${Color_Reset}${f:+ $f}$r"
+      else
+		    printf "${1:- (%s)}" "$c$GIT_${b##refs/heads/}${f:+ $f}$r"
+      fi
+    else
+		  printf "${1:- (%s)}" "$c${b##refs/heads/}${f:+ $f}$r"
+    fi
+
 	fi
 }
 

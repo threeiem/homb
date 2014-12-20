@@ -9,10 +9,11 @@ application configurations.
 
 Currently we have only tested with newer versions of bash on CentOS/Redhat.
 
-## Install Homb
+## Installing Homb
 
-Homb works only with newer versions of bash and also needs git. 
-
+Homb works only with newer versions of bash and also relies on git. Homb can be
+installed solo and extends bash individual applications. Coupled with
+<a href="http://freshshell.com/">fresh</a> Homb can be installed two ways. 
 ### Just Homb
 
 For this example we install Homb into the ~/.homb directory. Here is how to 
