@@ -130,8 +130,8 @@ __git_ps1 ()
 		local s # $ STASHED
 		local u # % UNTRACKED 
 		local c
-    local volor # label prompt color
-    local symbl # mah cawk
+        local volor # label prompt color
+        local symbl # Symbol present. When set goodness happens, empty default. 
 
 		if [ "true" = "$(git rev-parse --is-inside-git-dir 2>/dev/null)" ]; then
 			if [ "true" = "$(git rev-parse --is-bare-repository 2>/dev/null)" ]; then
@@ -210,17 +210,16 @@ __git_ps1 ()
       volor="${GIT_PS1_COLOR}"
     fi
 
-		local f="$w$i$s$u"
+    local f="$w$i$s$u"
     f=`trim "${f:+ $f}"`
 
     local branchola="${b##refs/heads/}" 
 
     if [ $symbl ]; then
-      printf "${1:- (%s)}" "$c${volor}${branchola}${Color_Reset} ${f}$r"
-    else
-      printf "${1:- (%s)}" "$c${volor}${branchola}${Color_Reset}${f}$r"
+      f=" ${f}"
     fi
-	fi
+      printf "${1:- (%s)}" "$c${volor}${branchola}${Color_Reset}${f}$r"
+  fi
 }
 
 # __gitcomp_1 requires 2 arguments
