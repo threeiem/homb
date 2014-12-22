@@ -103,7 +103,7 @@ __git_ps1 ()
 				r="|MERGING"
 			elif [ -f "$g/BISECT_LOG" ]; then
 				r="|BISECTING"
-			fi
+      fi
 
 			b="$(git symbolic-ref HEAD 2>/dev/null)" || {
 
@@ -119,7 +119,7 @@ __git_ps1 ()
 					git describe --exact-match HEAD ;;
 				esac 2>/dev/null)" ||
 
-				b="$(cut -c1-7 "$g/HEAD" 2>/dev/null)..." ||
+				b="$(cut -c0-7 "$g/HEAD" 2>/dev/null|tr -d)..." ||
 				b="unknown"
 				b="($b)"
 			}
@@ -131,6 +131,7 @@ __git_ps1 ()
 		local u # % UNTRACKED 
 		local c
     local volor # label prompt color
+    local symbl # mah cawk
 
 		if [ "true" = "$(git rev-parse --is-inside-git-dir 2>/dev/null)" ]; then
 			if [ "true" = "$(git rev-parse --is-bare-repository 2>/dev/null)" ]; then
@@ -165,10 +166,10 @@ __git_ps1 ()
 
       if [ -n "${w}" ]; then
         volor="${GIT_PS1_COLOR_UNSTAGED}"
+        symbl="true"
       fi
 
       w="${GIT_PS1_COLOR_UNSTAGED}${w}${Color_Reset}"
-
     fi
 
     # +
@@ -176,45 +177,49 @@ __git_ps1 ()
 
       if [ -n "${i}" ]; then
         volor="${GIT_PS1_COLOR_STAGED}"
+        symbl="true"
       fi
 
       i="${GIT_PS1_COLOR_STAGED}${i}${Color_Reset}"
-
     fi
  
     # $
     if [ -n $GIT_PS1_COLOR_STASHED ]; then
-
       if [ -n "${s}" ]; then
         if [ -z "${w}" ]; then
           if [ -z "${i}" ]; then
             volor="${GIT_PS1_COLOR_STASHED}"
+            symbl="true"
           fi
         fi
       fi
 
       s="${GIT_PS1_COLOR_STASHED}${s}${Color_Reset}"
-
     fi
 
     # % 
     if [ -n $GIT_PS1_COLOR_UNTRACKED ]; then
-
       if [ -n "${u}" ]; then
         volor="${GIT_PS1_COLOR_UNTRACKED}"
+        symbl="true"
       fi
-
       u="${GIT_PS1_COLOR_UNTRACKED}${u}${Color_Reset}"
-
     fi
 
-    if [ -n "${volor}" ]; then
+    if [ -z "${volor}" ]; then
       volor="${GIT_PS1_COLOR}"
     fi
 
 		local f="$w$i$s$u"
-    printf "${1:- (%s)}" "$c${volor}${b##refs/heads/}${Color_Reset}${f:+ $f}$r"
- 
+    f=`trim "${f:+ $f}"`
+
+    local branchola="${b##refs/heads/}" 
+
+    if [ $symbl ]; then
+      printf "${1:- (%s)}" "$c${volor}${branchola}${Color_Reset} ${f}$r"
+    else
+      printf "${1:- (%s)}" "$c${volor}${branchola}${Color_Reset}${f}$r"
+    fi
 	fi
 }
 

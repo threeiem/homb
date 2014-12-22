@@ -60,6 +60,15 @@ test_symlink() {
 }
 
 
+trim() {
+  local input="$*"
+
+  input="${input#"${input%%[![:space:]]*}"}"   # Trim leading whitespace 
+  input="${input%"${input##*[![:space:]]}"}"   # Trim trailing whitespace 
+  echo -n "$input"
+}
+
+
 ################################################################################
 # 
 # gitPS1
