@@ -1,29 +1,47 @@
-#!/bin/bash
 #################################################################################
 # ~/.homb/bash/ps1
 #
 # This file contains the configuration information for the bash prompt.
 #
 #################################################################################
-COLOR_USER="${IGreen}"
-COLOR_ADMIN="${IRed}"
-COLOR_SU="${IYellow}"
-COLOR_PATH="${Green}"
-COLOR_HOST="${IWhite}"
+
+#################################################################################
+# Defaults
+#################################################################################
+
+# Color Defaults
+#--------------------------------------------------------------------------------
+
+# Username Color
+if [ -z "${COLOR_USER}" ]; then
+  COLOR_USER="${IGreen}"
+fi
+
+# Super User Color (UID 0)
+if [ -z "${COLOR_SU}" ]; then
+  COLOR_SU="${IYellow}"
+fi
+
+# Path Color
+if [ -z "${COLOR_PATH}" ]; then
+  COLOR_PATH="${Green}"
+fi
+
+# Hostname Color
+if [ -z "${COLOR_HOST}" ]; then
+  COLOR_HOST="${IWhite}"
+fi
 
 # Pick the prompt based on the system
 #------------------------------------------ -------------------------------------
-PROMPT_BASIC='\u@\h \$ ' #basic prompt
+PROMPT_BASIC='\u@\h \$ ' # Basic prompt for compatability
 
-# TODO Refactor to reduce the amount of repeated WTF.
+# TODO Refactor to reduce the amount of repeated WTF. 
+# color(ColorName, "target_string") *shrug* 
 PROMPT_USER='$(echo -en "${COLOR_USER}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}")]\n$(gitPS1)\$ '; 
 
 # TODO Refactor to reduce WTF.
 PROMPT_SU='$(echo -en "${COLOR_SU}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}")] $(gitPS1)\n\$ '; 
-
-# TODO Refactor to reduce repeated WTF.
-PROMPT_ADMIN='$(echo -en "${COLOR_ADMIN}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}") $(gitPS1)]\n\$ '; 
-
 
 # Switch the prompt based on the (TODO terminal and) user we are using.
 #-------------------------------------------------------------------------------
