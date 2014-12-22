@@ -6,22 +6,16 @@
 # This file is intended to be the entry point for all things git and bash. 
 #
 ################################################################################
-include git/color
-include git/completion
 
-#if [ -f ~/.gitconfig ]; then
-#
-#  echo "CHECK: ~/.gitconfig file"
-#
-#
-#else
-#
-#  echo "ERROR: ~/.gitconfig file (not found)"
-#
-#fi
-
+# Variables
+#-------------------------------------------------------------------------------
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUNTRACKEDFILES=1
 
+# Includes
+#-------------------------------------------------------------------------------
+include git/color
+include git/completion
 
+# vim:ft=sh

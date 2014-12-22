@@ -1,8 +1,9 @@
+echo "git color"
 # TODO Sybology conversion for gitPS1()
-export GIT_PS1_COLOR="${Green}" # All clear
+export GIT_PS1_COLOR="${IBlack}" # All clear
 export GIT_PS1_COLOR_UNSTAGED="${BYellow}" # "*" Modifications are not committed
 export GIT_PS1_COLOR_STAGED="${Green}" # "+" Added files to stage uncommitted
 export GIT_PS1_COLOR_STASHED="${Cyan}" # "$" If somethings is stashed.
 export GIT_PS1_COLOR_UNTRACKED="${Red}" # "%" Files are not being tracked 
-
+env|grep GIT_PS1
 # vim: ft=sh

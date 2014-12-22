@@ -125,12 +125,12 @@ __git_ps1 ()
 			}
 		fi
 
-		local w # UNSTAGED
-		local i # STAGED
-		local s # STASHED
-		local u # UNTRACKED 
+		local w # * UNSTAGED 
+		local i # + STAGED
+		local s # $ STASHED
+		local u # % UNTRACKED 
 		local c
-    local le_mod # Modification flag
+    local volor # label prompt color
 
 		if [ "true" = "$(git rev-parse --is-inside-git-dir 2>/dev/null)" ]; then
 			if [ "true" = "$(git rev-parse --is-bare-repository 2>/dev/null)" ]; then
@@ -160,38 +160,57 @@ __git_ps1 ()
 			fi
 		fi
 
+    # *
     if [ -n $GIT_PS1_COLOR_UNSTAGED ]; then
+
+      if [ -n "${w}" ]; then
+        volor="${GIT_PS1_COLOR_UNSTAGED}"
+      fi
+
       w="${GIT_PS1_COLOR_UNSTAGED}${w}${Color_Reset}"
-      le_mod="true"
+
     fi
 
+    # +
     if [ -n $GIT_PS1_COLOR_STAGED ]; then
+
+      if [ -n "${i}" ]; then
+        volor="${GIT_PS1_COLOR_STAGED}"
+      fi
+
       i="${GIT_PS1_COLOR_STAGED}${i}${Color_Reset}"
-      le_mod="true"
-    fi
 
+    fi
+ 
+    # $
     if [ -n $GIT_PS1_COLOR_STASHED ]; then
+
+      if [ -n "${s}" ]; then
+        if [ -z "${w}" ]; then
+          if [ -z "${i}" ]; then
+            volor="${GIT_PS1_COLOR_STASHED}"
+          fi
+        fi
+      fi
+
       s="${GIT_PS1_COLOR_STASHED}${s}${Color_Reset}"
-      le_mod="true"
+
     fi
 
+    # % 
     if [ -n $GIT_PS1_COLOR_UNTRACKED ]; then
+
+      if [ -n "${u}" ]; then
+        volor="${GIT_PS1_COLOR_UNTRACKED}"
+      fi
+
       u="${GIT_PS1_COLOR_UNTRACKED}${u}${Color_Reset}"
-      le_mod="true"
+
     fi
 
 		local f="$w$i$s$u"
-
-    if [ -n le_mod ]; then
-      if [ -n $GIT_COLOR_MODIFIED ]; then
-		    printf "${1:- (%s)}" "$c${GIT_COLOR_MODIFIED}${b##refs/heads/}${Color_Reset}${f:+ $f}$r"
-      else
-		    printf "${1:- (%s)}" "$c$GIT_${b##refs/heads/}${f:+ $f}$r"
-      fi
-    else
-		  printf "${1:- (%s)}" "$c${b##refs/heads/}${f:+ $f}$r"
-    fi
-
+    printf "${1:- (%s)}" "$c${volor}${b##refs/heads/}${Color_Reset}${f:+ $f}$r"
+ 
 	fi
 }
 
@@ -2302,3 +2321,5 @@ if [ Cygwin = "$(uname -o 2>/dev/null)" ]; then
 complete -o bashdefault -o default -o nospace -F _git git.exe 2>/dev/null \
 	|| complete -o default -o nospace -F _git git.exe
 fi
+
+# vim:ft=sh
