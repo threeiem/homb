@@ -45,6 +45,7 @@ homb() {
 
 }
 
+
 ################################################################################
 #
 # hombie
@@ -59,19 +60,47 @@ hombie() {
 
   case $SHELL in
 
-    ${whichBash})
+    ${whichBash}|${alaisBash})
+      
+      locals_only
       return 0
       ;;
     
-    ${aliasBash})
-      return 0
-      ;;
-
     *)
       return 1
       ;;
 
   esac
+}
+
+
+#################################################################################
+# 
+# locals_only
+#
+# Looks for the special file $HOMB_LOCAL and sources it.
+#
+#################################################################################
+locals_only() {
+
+  if [ -z "${HOMB_LOCAL}" ]; then
+  
+    local hombrc="${HOME}/.hombrc"
+  
+    if [ -e "${hombrc}" ]; then 
+  
+      export HOMB_LOCAL="${hombrc}"
+  
+    fi
+  
+  fi
+
+  if [ -e "${HOMB_LOCAL}" ]; then
+
+    source "${HOMB_LOCAL}"
+
+  fi
+
 }
 
 

@@ -32,7 +32,7 @@
 
 # Homb depends on bash as the shell. (it's the B in HomB) To get started we need
 # to load the bashlib library and use its magics.
-export HOMBLIB="${HOMBASE}/lib" && test -f $HOMBLIB && source $HOMBLIB
+export HOMBLIB="${HOMBASE}/lib" && test -e $HOMBLIB && source $HOMBLIB
 
 # If you're not a hombie then you have to leave.
 hombie 2> /dev/null || return;
