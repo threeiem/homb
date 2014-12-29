@@ -19,34 +19,23 @@ set_auth_sock() {
   if [ ! -S ${SSH_AUTH_SOCK_LINK} ]; then
 
     rm $SSH_AUTH_SOCK_LINK
-
-    if [ ! -S $SSH_AUTH_SOCK ]; then
-
-       # Make a new socket
-       eval $(ssh-agent|grep ^SSH)
-
-    fi
-
-    ln -s $SSH_AUTH_SOCK $SSH_AUTH_SOCK_LINK
-    export SSH_AUTH_SOCK="${SSH_AUTH_SOCK_LINK}"
+    ln -sf $SSH_AUTH_SOCK $SSH_AUTH_SOCK_LINK
 
   else
 
-    # This means we may have a dead symbolic link and usually happens with 
+    # This means we may have a old symbolic link and usually happens with 
     # long duration logins or using terminals multiplexers like tmux or
     # GNU screen.
-    test_symlink $SSH_AUTH_SOCK_LINK  $SSH_AUTH_SOCK 1> /dev/null
-
-    if [ "$?" != 0 ]; then 
+    if [ ! $(test_symlink $SSH_AUTH_SOCK_LINK  $SSH_AUTH_SOCK 1> /dev/null) ]; then
 
       rm $SSH_AUTH_SOCK_LINK
-      eval $(ssh-agent|grep  ^SSH)
-      ln -s $SSH_AUTH_SOCK $SSH_AUTH_SOCK_LINK
-      export SSH_AUTH_SOCK="${SSH_AUTH_SOCK_LINK}"
+      ln -sf $SSH_AUTH_SOCK $SSH_AUTH_SOCK_LINK
 
     fi
 
   fi
+
+  export SSH_AUTH_SOCK="${SSH_AUTH_SOCK_LINK}"
 
   return 0
 

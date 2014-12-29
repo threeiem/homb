@@ -24,11 +24,14 @@ tomb() {
     if [ -z $session_ls ]; then 
 
       echo "No sessions found."
+      set_auth_sock
+      sleep 1s
       tmux new-session -s tomb
       return 1
 
     else
 
+      set_auth_sock
       tmux attach-session -t $session_ls
 
     fi
@@ -40,12 +43,16 @@ tomb() {
     if [ -z $session_ls ]; then
 
       echo "Session ${1} not found."
+      set_auth_sock
+      sleep 1s
       tmux new-session -s $1
 
 
     else
 
       echo "tmux: Attaching session ${session_ls}"
+      set_auth_sock
+      sleep 1s
       tmux attach-session -t $1
  
     fi
@@ -58,5 +65,4 @@ tomb() {
 ################################################################################
 
 alias tls='tmux list-sessions 2> /dev/null'
-
 # vim:ft=sh
