@@ -62,7 +62,6 @@ hombie() {
 
     ${whichBash}|${alaisBash})
       
-      locals_only
       return 0
       ;;
     

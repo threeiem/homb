@@ -57,5 +57,6 @@ if [ -z "$HOMBLOCAL" ]; then
 
 fi
 
-export HOMBLOCAL="${HOMBLOCAL}" && test -e $HOMBLOCAL && source $HOMBLOCAL
+#export HOMBLOCAL="${HOMBLOCAL}" && test -e $HOMBLOCAL && source $HOMBLOCAL
+locals_only
 # vim:ft=sh
