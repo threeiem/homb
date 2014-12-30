@@ -5,7 +5,7 @@ Homb
 
 The Homb project is set of shell extensions for console applications. It is 
 intended for use with <a href="http://freshshell.com/">fresh</a> for managing 
-application configurations. 
+application configurations including Homb itself. 
 
 Currently we have only tested with newer versions of bash on CentOS/Redhat.
 
@@ -14,7 +14,8 @@ Currently we have only tested with newer versions of bash on CentOS/Redhat.
 Homb works only with newer versions of bash and also relies on git. Homb can be
 installed solo and extends bash individual applications. Coupled with
 <a href="http://freshshell.com/">fresh</a> Homb can be installed two ways. 
-### Just Homb
+
+### Homb Alone
 
 For this example we install Homb into the ~/.homb directory. Here is how to 
 clone .homb into your "${HOME}" or "~" directory.
@@ -22,6 +23,7 @@ clone .homb into your "${HOME}" or "~" directory.
 ```
 git clone https://github.com/threeiem/homb ~/.homb
 ```
+
 Now add this line to your ~/.bash_profile file. <b>Do NOT add this line to the
 ~/.bashrc file!</b> The .homb project is intended for interactive shells only.
 
