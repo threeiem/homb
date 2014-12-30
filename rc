@@ -33,7 +33,6 @@
 # Homb depends on bash as the shell. (it's the B in HomB) To get started we need
 # to load the bashlib library and use its magics.
 export HOMBLIB="${HOMBASE}/lib" && test -e $HOMBLIB && source $HOMBLIB
-export HOMBLOCAL="${HOME}/.hombrc" && test -e $HOMBLOCAL && source $HOMBLOCAL
 
 # If you're not a hombie then you have to leave.
 hombie 2> /dev/null || return;
@@ -52,4 +51,11 @@ include svn
 include tmux
 include drush
 
+if [ -z "$HOMBLOCAL" ]; then
+
+  HOMBLOCAL="${HOME}/.hombrc"
+
+fi
+
+export HOMBLOCAL="${HOMBLOCAL}" && test -e $HOMBLOCAL && source $HOMBLOCAL
 # vim:ft=sh
