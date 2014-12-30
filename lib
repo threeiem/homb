@@ -83,21 +83,21 @@ hombie() {
 #################################################################################
 locals_only() {
 
-  if [ -z "${HOMB_LOCAL}" ]; then
+  if [ -z "${HOMBLOCAL}" ]; then
   
     local hombrc="${HOME}/.hombrc"
   
     if [ -e "${hombrc}" ]; then 
   
-      export HOMB_LOCAL="${hombrc}"
+      export HOMBLOCAL="${hombrc}"
   
     fi
   
   fi
 
-  if [ -e "${HOMB_LOCAL}" ]; then
+  if [ -e "${HOMBLOCAL}" ]; then
 
-    source "${HOMB_LOCAL}"
+    source "${HOMBLOCAL}"
 
   fi
 
