@@ -38,7 +38,7 @@ PROMPT_BASIC='\u@\h \$ ' # Basic prompt for compatability
 
 # TODO Refactor to reduce the amount of repeated WTF. 
 # color(ColorName, "target_string") *shrug* 
-PROMPT_USER='$(echo -en "${COLOR_USER}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}")]\n$(gitPS1)\$ '; 
+PROMPT_USER='$(echo -en "${COLOR_USER}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}")]\n$(gitPS1)\$ $(echo -en "${Color_Reset}")'; 
 
 # TODO Refactor to reduce WTF.
 PROMPT_SU='$(echo -en "${COLOR_SU}")\u$(echo -en "${Color_Reset}")@$(echo -en "${COLOR_HOST}")\h$(echo -en "${Color_Reset}")[$(echo -en "${COLOR_PATH}")\w$(echo -en "${Color_Reset}")] $(gitPS1)\n\$ '; 
