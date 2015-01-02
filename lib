@@ -141,6 +141,14 @@ include() {
 
         fi
 
+        local pathCompletion="${HOMEBASE}/${1}/completion"
+
+        if [ -f $pathCompletion ]; then
+
+          source $pathCompletion
+
+        fi
+
       fi
 
       source "${HOMBASE}/${1}/rc"
