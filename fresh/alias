@@ -1,1 +1,1 @@
-alias fresh="cd ${HOME};fresh ${*}"
+alias fresh='cd ${HOME};fresh ${*}'
