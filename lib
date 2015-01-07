@@ -133,7 +133,7 @@ include() {
 
         fi
 
-        local pathAlias="${HOMEBASE}/${1}/alias"
+        local pathAlias="${HOMBASE}/${1}/alias"
 
         if [ -f $pathAlias ]; then
 
@@ -141,7 +141,7 @@ include() {
 
         fi
 
-        local pathCompletion="${HOMEBASE}/${1}/completion"
+        local pathCompletion="${HOMBASE}/${1}/completion"
 
         if [ -f $pathCompletion ]; then
 
