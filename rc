@@ -49,6 +49,7 @@ include ssh
 include git
 include svn
 include tmux
+include fresh
 include drush
 
 if [ -z "$HOMBLOCAL" ]; then
