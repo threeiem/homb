@@ -2,6 +2,6 @@
 # Fresh Aliases
 ################################################################################
 
-alias fresh='cd ${HOME};fresh ${*}'
+alias fresh='cd ${HOME};fresh ${*}; cd $OLDPWD'
 
 # vim:ft=sh
