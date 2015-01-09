@@ -5,7 +5,7 @@ Homb
 
 The Homb project is set of bash extensions for applications. It is intended 
 for use with <a href="http://freshshell.com/">fresh</a> for managing application
-configurations including Homb itself. Homb can be installed standalone or with
+configurations, including Homb itself. Homb can be installed standalone or with
 fresh (recommended). Homb leaves all the application configurations to Fresh 
 while Homb extends applications with various completions, helpers, and tools.
 See the <a href="https://github.com/threeiem/homb/wiki">wiki</a> for details on
