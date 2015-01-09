@@ -8,7 +8,7 @@
 
 # Reset
 #Color_Reset='\e[0m'     # Text Reset
-Color_Reset=$(tput sgr0);
+Color_Reset=$(tput sgr0)
 
 # Regular Colors
 #Black='\e[0;30m'        # Black
@@ -93,7 +93,4 @@ if [ "${TERM_PROGRAM}" == "Apple_Terminal" ]; then
   export LSCOLORS=ExFxBxDxCxegedabagacad
 fi
 
-################################################################################
 # vim:ft=sh
-# vim:syntax=sh
-################################################################################
