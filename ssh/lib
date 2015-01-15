@@ -1,3 +1,4 @@
+#!/bin/bash
 ################################################################################
 # SSH Bash Library
 #
@@ -41,4 +42,77 @@ set_auth_sock() {
 
 }
 
-# vim: ft=sh
+
+################################################################################
+#
+#  Frank - Easily create SSL certificates. "Frank a certificate"
+#
+################################################################################
+frank() {
+
+  if [ $# -lt 2 ]; then
+    echo "frank takes 2 params"
+    echo
+    echo "$0 <mode> <key filename>"
+    echo
+    exit 1
+  fi
+  
+  SERVER=$2
+  
+  case "$1" in
+    makeca)
+      /usr/bin/openssl genrsa -des3 -out ca.key 4096
+      /usr/bin/openssl req -new -x509 -days 1825 -key ca.key -out ca.crt
+      ;;
+    makekey)
+      /usr/bin/openssl genrsa -des3 2048 > ${SERVER}.key.encrypted
+      /usr/bin/openssl rsa -in ${SERVER}.key.encrypted -out ${SERVER}.key
+      ;;
+    makecsr)
+      if [ ! -f ${SERVER}.key ]; then
+        echo "${SERVER}.key missing, run \"$0 makekey\" first."
+        exit 1
+      fi
+      /usr/bin/openssl req -new -key ${SERVER}.key -out ${SERVER}.csr
+      ;;
+    signcrt)
+      if [ ! -f ca.key ] || [ ! -f ca.crt ]; then
+        echo "ca.key missing, run \"$0 makeca\" first."
+        exit 1
+      fi
+      if [ ! -f ${SERVER}.csr ]; then
+        echo "${SERVER}.csr missing, run \"$0 makecsr\" first."
+        exit 1
+      fi
+      /usr/bin/openssl x509 -req -days 1825 -in ${SERVER}.csr -CA ca.crt \
+        -CAkey ca.key -set_serial 01 -out ${SERVER}.crt
+      ;;
+    makedh)
+      /bin/dd if=/dev/urandom of=ssldh.rand count=1 2>/dev/null
+      /usr/bin/openssl gendh -rand ssldh.rand 512 > ${SERVER}.dh
+      ;;
+    makepem)
+      if [ ! -f ${SERVER}.key ]; then
+        echo "${SERVER}.key missing, run \"$0 makekey\" first."
+        exit 1
+      fi
+      if [ ! -f ${SERVER}.crt ]; then
+        echo "${SERVER}.crt missing, obtain from CA or run \"$0 signcrt\" first."
+        exit 1
+      fi
+      cat ${SERVER}.key > ${SERVER}.pem
+      cat ${SERVER}.crt >> ${SERVER}.pem
+      ;;
+    *)
+      echo
+      echo $"Usage: $0 {makeca|makekey|makecsr|signcrt|makedh|makepem} <key filename>"
+      echo
+      exit 2
+  esac
+  
+  exit 0
+  
+}
+
+# vim:syntax=bash

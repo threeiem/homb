@@ -93,7 +93,4 @@ if [ "${TERM_PROGRAM}" == "Apple_Terminal" ]; then
   export LSCOLORS=ExFxBxDxCxegedabagacad
 fi
 
-################################################################################
 # vim:ft=sh
-# vim:syntax=sh
-################################################################################
