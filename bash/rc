@@ -1,3 +1,4 @@
+#!/bin/bash
 ###############################################################################
 # Bash Shell Resouce File
 #
@@ -51,10 +52,3 @@ export PATH=$PATH
 include bash/alias
 include bash/color
 include bash/ps1
-
-# Local resouces, loaded last to overide all.
-#    (not loaded if they are not there)
-include home
-include work
-
-# vim:ft=sh

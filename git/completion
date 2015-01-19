@@ -1,3 +1,5 @@
+#!/bin/bash
+################################################################################
 # bash completion support for core Git.
 #
 # Copyright (C) 2006,2007 Shawn O. Pearce <spearce@spearce.org>
@@ -51,6 +53,7 @@
 #
 #       git@vger.kernel.org
 #
+################################################################################
 
 case "$COMP_WORDBREAKS" in
 *:*) : great ;;
@@ -2329,5 +2332,3 @@ if [ Cygwin = "$(uname -o 2>/dev/null)" ]; then
 complete -o bashdefault -o default -o nospace -F _git git.exe 2>/dev/null \
 	|| complete -o default -o nospace -F _git git.exe
 fi
-
-# vim:ft=sh

@@ -114,5 +114,3 @@ frank() {
   exit 0
   
 }
-
-# vim:syntax=bash

@@ -1,3 +1,4 @@
+#!/bin/bash
 ################################################################################
 #
 # SSH Resouce File
@@ -11,5 +12,3 @@
 
 # Place to store the symbolic link to the auth_sock.
 export SSH_AUTH_SOCK_LINK="${HOME}/.ssh/ssh_auth_sock.${HOSTNAME}"
-
-# vim:ft=sh

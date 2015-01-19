@@ -1,3 +1,4 @@
+#!/bin/bash
 # .homb resource file
 ################################################################################
 #
@@ -60,5 +61,3 @@ fi
 
 # Must be called last
 locals_only
-
-# vim:ft=sh

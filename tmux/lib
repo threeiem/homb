@@ -1,3 +1,56 @@
-# Check for multiple sessions?
+#!/bin/bash
+################################################################################
+# TMux Functions
+################################################################################
 
-#send keys routines?
+################################################################################
+# tomb
+#
+# Alias for tmux attach-session -t [$1], but will connect to the first session.
+# TODO Add logic for multiple sessions and prompt the user for the correct one.
+#
+################################################################################
+tomb() {
+
+  local session_ls=$(tmux list-sessions 2> /dev/null|cut -f 1 -d\:|head -1)
+
+  if [ -z $1 ]; then
+
+    if [ -z $session_ls ]; then 
+
+      echo "No sessions found."
+      set_auth_sock
+      sleep 1s
+      tmux new-session -s tomb
+      return 1
+
+    else
+
+      set_auth_sock
+      tmux attach-session -t $session_ls
+
+    fi
+
+  else
+
+    session_ls=$(tmux list-sessions 2> /dev/null|cut -f 1 -d\:|grep $1)
+
+    if [ -z $session_ls ]; then
+
+      echo "Session ${1} not found."
+      set_auth_sock
+      sleep 1s
+      tmux new-session -s $1
+
+
+    else
+
+      echo "tmux: Attaching session ${session_ls}"
+      set_auth_sock
+      sleep 1s
+      tmux attach-session -t $1
+ 
+    fi
+
+  fi
+}
