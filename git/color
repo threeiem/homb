@@ -6,7 +6,7 @@
 #
 ################################################################################
 
-export GIT_PS1_COLOR="${IBlack}" # All clear
+export GIT_PS1_COLOR="${BBlack}" # All clear
 export GIT_PS1_COLOR_UNSTAGED="${BYellow}" # "*" Modifications are not committed
 export GIT_PS1_COLOR_STAGED="${Green}" # "+" Added files to stage uncommitted
 export GIT_PS1_COLOR_STASHED="${Cyan}" # "$" If somethings is stashed.
