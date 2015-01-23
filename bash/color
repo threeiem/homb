@@ -13,33 +13,33 @@
   # Dimensions
   #-------------------------------------------------------------------------------
   # Columns in a line
-#  COL=$({ tput cols || tput co;} 2>&3 )
+  COLS=$({ tput cols || tput co;} 2> /dev/null)
   # Lines in the screen 
-#  ROW=$({ tput lines || tput li;} 2>&3 )
+  ROWS=$({ tput lines || tput li;} 2> /dev/null)
 
   # Controls
   #-------------------------------------------------------------------------------
   # Reset 
-  Reset=$(tput sgr0 || tput me)
+  Reset=$({ tput sgr0 || tput me;} 2> /dev/null)
   # Bold
-  Bold=$(tput bold || tput md)
+  Bold=$({ tput bold || tput md;} 2> /dev/null)
   # Blink
-  Blink=$(tput blink || tput mb)
+  Blink=$({ tput blink || tput mb;} 2> /dev/null)
 
   # Basic Colors
   #-------------------------------------------------------------------------------
   # Black
-  Black=$(tput setaf 0 || tput AF 0)   
+  Black=$({ tput setaf 0 || tput AF 0;} 2> /dev/null)   
   # White
-  White=$(tput setaf 7 || tput AF 7)
+  White=$({ tput setaf 7 || tput AF 7;} 2> /dev/null)
 
   # Fancy Colors
   #-------------------------------------------------------------------------------
   [[ $TERM != *-m ]] && {
     # Red
-    Red=$(tput setaf 1 || tput AF 1)
+    Red=$({ tput setaf 1 || tput AF 1;} 2> /dev/null)
     # Green
-    Green=$(tput setaf 2 || tput AF 2)
+    Green=$({ tput setaf 2 || tput AF 2)
     # Yellow
     Yellow=$(tput setaf 3 || tput AF 3)
     # Blue
