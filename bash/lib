@@ -140,3 +140,19 @@ gurp() {
   grep $@ |grep -v "\.svn"|grep -v "grep"|grep -v "gurp"|grep -v "ps"
 
 }
+
+################################################################################
+#
+# Sizzle
+#
+# Make a string have some pizzaz. This function takes a string and will simply
+# repeat it, but has a flag for color and weight.
+#
+#   ex.) sizzle "Make my string sizzle." Red Bold Bright
+#
+# This would print out the string Make my string sizzle in the color red and 
+# bold and the higher intensity color of Red. 
+#
+################################################################################
+sizzle() {
+} 
