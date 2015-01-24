@@ -39,10 +39,10 @@ PROMPT_BASIC='\u@\h \$ ' # Basic prompt for compatability
 
 # TODO Refactor to reduce the amount of repeated WTF. 
 # color(ColorName, "target_string") *shrug* 
-PROMPT_USER='\[${COLOR_USER}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Color_Reset}\][\[${COLOR_PATH}\]\w\[${Color_Reset}\]]\n$(gitPS1)\$ \[${Color_Reset}\]'; 
+PROMPT_USER='\[${COLOR_USER}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Color_Reset}\][\[${COLOR_PATH}\]\w\[${Color_Reset}\]]\[\n\]\[$(gitPS1)\]\$ \[${Color_Reset}\]'; 
 
 # TODO Refactor to reduce WTF.
-PROMPT_USER='\[${COLOR_SU}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Color_Reset}\][\[${COLOR_PATH}\]\w\[${Color_Reset}\]]\n$(gitPS1)\$ \[${Color_Reset}\]'; 
+PROMPT_SU='\[${COLOR_SU}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Color_Reset}\][\[${COLOR_PATH}\]\w\[${Color_Reset}\]]\[\n\]\[$(gitPS1)\]\$ \[${Color_Reset}\]'; 
 
 # Switch the prompt based on the (TODO terminal and) user we are using.
 #-------------------------------------------------------------------------------
