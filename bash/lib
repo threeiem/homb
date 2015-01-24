@@ -155,4 +155,9 @@ gurp() {
 #
 ################################################################################
 sizzle() {
+  local text=$1
+  local attribs=$(($#-1))
+ 
+  echo "Input: $text"
+  echo "Attribute Count: $attribs"
 } 
