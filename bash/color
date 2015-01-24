@@ -25,6 +25,10 @@
   Bold=$({ tput bold || tput md;} 2> /dev/null)
   # Blink
   Blink=$({ tput blink || tput mb;} 2> /dev/null)
+  # Intense
+  Intense=$({ tput smso || tput so;} 2> /dev/null)
+  # Intense Stop
+  Intense_Stop=$({ tput rmso || tput se;} 2> /dev/null)
 
   # Basic Colors
   #-------------------------------------------------------------------------------
@@ -39,36 +43,16 @@
     # Red
     Red=$({ tput setaf 1 || tput AF 1;} 2> /dev/null)
     # Green
-    Green=$({ tput setaf 2 || tput AF 2)
+    Green=$({ tput setaf 2 || tput AF 2;} 2> /dev/null)
     # Yellow
-    Yellow=$(tput setaf 3 || tput AF 3)
+    Yellow=$({ tput setaf 3 || tput AF 3;} 2> /dev/null)
     # Blue
-    Blue=$(tput setaf 4 || tput AF 4)
+    Blue=$({ tput setaf 4 || tput AF 4;} 2> /dev/null)
     # Purple
-    Purple=$(tput setaf 5 || tput AF 5)
+    Purple=$({ tput setaf 5 || tput AF 5;} 2> /dev/null)
     # Cyan
-    Cyan=$(tput setaf 6 || tput AF 6)
+    Cyan=$({ tput setaf 6 || tput AF 6;} 2> /dev/null)
   } 
- 
-  # Bold Colors 
-  #-------------------------------------------------------------------------------
-  # Bold Black
-  BBlack=$(tput setaf 0; tput bold)
-  # Bold Red
-  BRed=$(tput setaf 1; tput bold)
-  # Bold Green
-  BGreen=$(tput setaf 2; tput bold)
-  # Bold Yellow
-  BYellow=$(tput setaf 3; tput bold)
-  # Bold Blue
-  BBlue=$(tput setaf 4; tput bold)
-  # Bold Purple
-  BPurple=$(tput setaf 5; tput bold)
-  # Bold Cyan
-  BCyan=$(tput setaf 6; tput bold)
-  # Bold White
-  BWhite=$(tput setaf 7; tput bold)
-
 }
 
 if [ "${TERM_PROGRAM}" == "Apple_Terminal" ]; then

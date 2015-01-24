@@ -59,6 +59,7 @@ alias GREp='grep'
 alias GREP='grep'
 alias grp='grep'
 alias atn='ant'
+alias szl='sizzle'
 
 # Humor me baby.
 #-------------------------------------------------------------------------------

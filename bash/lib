@@ -148,16 +148,92 @@ gurp() {
 # Make a string have some pizzaz. This function takes a string and will simply
 # repeat it, but has a flag for color and weight.
 #
-#   ex.) sizzle "Make my string sizzle." Red Bold Bright
+#   ex.) sizzle "Make text sizzle." Red Bold Bright
 #
 # This would print out the string Make my string sizzle in the color red and 
 # bold and the higher intensity color of Red. 
 #
 ################################################################################
 sizzle() {
+
+  # User Input
   local text=$1
+
+  # Attribute Count
   local attribs=$(($#-1))
- 
-  echo "Input: $text"
-  echo "Attribute Count: $attribs"
+
+  for attribute in "${@:2}"; do
+
+    case "${attribute}" in
+
+      Reset|reset|me)
+        # [RESET]
+        text="${text}${Reset}"
+        ;;
+
+      Bold|bold|md)
+        # [Style:Bold]
+        text="${Bold}${text}${Reset}"
+        ;;
+
+      Intense|Standout|standout|strong|intense|so)
+        # [Style:Stand-out]
+        text="${Intense}${text}${Intense_Stop}${Reset}"
+        ;;
+      Blink|blink|mb)
+        # [Style:Blink]
+        text="${Blink}${text}${Reset}"
+        ;;
+
+      Black|black|0)
+        # [Color:Black]
+        text="${Black}${text}${Reset}"
+        ;;
+
+      White|white|7)
+        # [Color:White]
+        text="${White}${text}${Reset}"
+        ;;
+
+      Red|red|1)
+        # [Color:Red]
+        text="${Red}${text}${Reset}"
+        ;;
+
+      Green|green|3)
+        # [Color:Green]
+        text="${Green}${text}${Reset}"
+        ;;
+
+      Yellow|yellow|3)
+        # [Color:Yellow]
+        text="${Yellow}${text}${Reset}"
+        ;;
+
+      Blue|blue|4)
+        # [Color:Blue]
+        text="${Blue}${text}${Reset}"
+        ;;
+
+      Purple|purple|5)
+        # [Color:Purple]
+        text="${Purple}${text}${Reset}"
+        ;;
+
+      Cyan|cyan|6)
+        # [Color:Cyan]
+        text="${Cyan}${text}${Reset}"
+        ;;
+
+      *)
+        # [Catch all]
+        echo "${Reset}${text}${Reset}"
+        return 0;
+        ;;
+
+    esac  
+
+  done
+
+  echo "${Reset}${text}${Reset}"
 } 

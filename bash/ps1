@@ -15,7 +15,7 @@
 
 # Username Color
 if [ -z "${COLOR_USER}" ]; then
-  COLOR_USER="${BGreen}"
+  COLOR_USER="$(sizzle "" bold green)"
 fi
 
 # Super User Color (UID 0)
