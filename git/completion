@@ -172,7 +172,7 @@ __git_ps1 ()
         symbl="true"
       fi
 
-      w="${GIT_PS1_COLOR_UNSTAGED}${w}${Color_Reset}"
+      w="${GIT_PS1_COLOR_UNSTAGED}${w}${Reset}"
     fi
 
     # +
@@ -183,7 +183,7 @@ __git_ps1 ()
         symbl="true"
       fi
 
-      i="${GIT_PS1_COLOR_STAGED}${i}${Color_Reset}"
+      i="${GIT_PS1_COLOR_STAGED}${i}${Reset}"
     fi
  
     # $
@@ -197,7 +197,7 @@ __git_ps1 ()
         fi
       fi
 
-      s="${GIT_PS1_COLOR_STASHED}${s}${Color_Reset}"
+      s="${GIT_PS1_COLOR_STASHED}${s}${Reset}"
     fi
 
     # % 
@@ -206,7 +206,7 @@ __git_ps1 ()
         volor="${GIT_PS1_COLOR_UNTRACKED}"
         symbl="true"
       fi
-      u="${GIT_PS1_COLOR_UNTRACKED}${u}${Color_Reset}"
+      u="${GIT_PS1_COLOR_UNTRACKED}${u}${Reset}"
     fi
 
     if [ -z "${volor}" ]; then
@@ -221,7 +221,7 @@ __git_ps1 ()
     if [ $symbl ]; then
       f=" ${f}"
     fi
-      printf "${1:- (%s)}" "$c${volor}${branchola}${Color_Reset}${f}$r"
+      printf "${1:- (%s)}" "$c${volor}${branchola}${Reset}${f}$r"
   fi
 }
 
