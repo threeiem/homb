@@ -1,0 +1,15 @@
+#!/bin/bash
+
+freshtica(){
+
+  cd ${HOME}
+
+  if [ -x ${HOME}/bin/fresh ]; then
+
+    ${HOME}/bin/fresh $@
+
+  fi
+
+  cd $OLDPWD
+
+}
