@@ -12,11 +12,11 @@
 ################################################################################
 tomb() {
 
-  local session_ls=$(tmux list-sessions 2> /dev/null|cut -f 1 -d\:|head -1)
+  if [ -z "${1}" ]; then
 
-  if [ -z $1 ]; then
+    local session_ls=$(tmux list-sessions 2> /dev/null|cut -f 1 -d\:)
 
-    if [ -z $session_ls ]; then 
+    if [ -z "${session_ls}" ]; then 
 
       echo "No sessions found."
       set_auth_sock
@@ -26,8 +26,50 @@ tomb() {
 
     else
 
-      set_auth_sock
-      tmux attach-session -t $session_ls
+      local count=$(($(echo -ne "$session_ls"|wc -l) + 1))
+
+      if [[  "$count" > "1" ]]; then
+
+        local current=0
+        IFS=$'\n'
+        sessions="$(tmux list-sessions 2> /dev/null)"
+        declare -a targets=()
+
+        echo "Gathering sessions data..."
+        for item in $sessions; do
+
+          title=$(echo "${item}"|cut -f 1 -d\:)
+          properties=$(echo "${item}"|cut -f 2- -d\:)
+
+          targets[$current]=$title
+          current=$(($current + 1))
+
+        done
+
+        PS3="Choose a session you want to revive. (${count} found)"
+        safe_word="Quit"
+
+        select option in "${targets[@]}" "Quit"; do
+
+          if [ ! -z "${targets[$((${REPLY} - 1 ))]}" ]; then
+               
+            # if they request to to quit.. using the safeword.
+            session_target="${targets[$((${REPLY} - 1))]}"
+
+          else
+
+            echo "else:${targets[$((${REPLY} - 1))]}"
+
+          fi
+        done
+
+      else
+        session_target=$sessions_ls
+      fi
+
+      echo "Success: You choose: $session_target"
+      #set_auth_sock
+      #$tmux attach-session -t $session_target
 
     fi
 
