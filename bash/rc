@@ -40,6 +40,9 @@ export IRCNAME="Federal Holiday"
 #-------------------------------------------------------------------------------
 #if [[ ! $DISPLAY_CONNECT ]]; then; export DISPLAY_CONNECT="${DISPLAY}"; fi
 
+# System Parameters 
+#-------------------------------------------------------------------------------
+export SYSTEM_NAME=$(uname)
 
 ################################################################################
 # Export the path (important)
