@@ -19,7 +19,9 @@ homb() {
 
       if [ "$freshBin" != "" ]; then
 
-        fresh
+        cd $HOME;
+        $freshBin update
+        cd $OLDPWD
 
       else
         
@@ -40,7 +42,7 @@ homb() {
   else
 
     echo "FAIL: \$HOMBASE empty or not set."
-    return 1
+    exit 13
 
   fi  
 
