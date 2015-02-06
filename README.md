@@ -21,6 +21,7 @@ The Homb project works best with Fresh.
 ## Install fresh
 
 Install  <a href="http://freshshell.com/">fresh</a> with the following:
+
 ```
 bash -c "`curl -sL get.freshshell.com`"
 ```
@@ -29,33 +30,31 @@ bash -c "`curl -sL get.freshshell.com`"
 
 Once  <a href="http://freshshell.com/">fresh</a> is downloaded add this to your
 ~/.bash_profile file (not ~/.bashrc).
+
 ```
-# Set $HOMBASE before source of Fresh's shell.sh
 export HOMBASE="${HOME}/.homb"
-fpath="${HOME}/.fresh/build/shell.sh" && test -f $fpath && source $fpath
+export FASHO="${HOME}/.fresh/build/shell.sh" && test -f $FASHO && source $FASHO
 ```
 ## Configure (~/.freshrc)
 
 Add this to the .freshrc file. In this example we are using "~/.homb/" as the 
 setting for the $HOMBASE environment variable in the .bash_profile file.
+
 ```
+#-------------------------------------------------------------------------------
+# Homb: Makes setting $HOMBASE for Homb simply $HOME/.homb
+#-------------------------------------------------------------------------------
 fresh threeiem/homb . --file=~/.homb/
+
+# Homb resource file to load Homb
+fresh threeiem/homb rc
 ```
 
 
 # Homb Alone
 
-For this example we install Homb into the ~/.homb directory. Here is how to 
-clone .homb into your "${HOME}" or "~" directory.
-```
-git clone https://github.com/threeiem/homb ~/.homb
-```
+The Homb project used to work alone, but now it requires Fresh to be installed.
 
-Now add this line to your ~/.bash_profile file. <b>DO NOT ADD THIS LINE TO THE
-~/.bashrc FILE!</b> The .homb project is intended for interactive shells only.
-```
-export HOMBASE="${HOME}/.homb" && test -e $HOMBASE/rc && source $HOMBASE/rc
-```
 
 # Common Problems
 

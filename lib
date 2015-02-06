@@ -11,7 +11,6 @@ homb() {
   if [ $HOMBASE != "" ]; then
 
     local hombRC="${HOMBASE}/rc"
-    local freshBin="$(which fresh 2> /dev/null)"
 
     if [ -f $hombRC ]; then
 
@@ -20,7 +19,7 @@ homb() {
       if [ "$freshBin" != "" ]; then
 
         cd $HOME;
-        $freshBin update
+        freshtica update
         cd $OLDPWD
 
       else

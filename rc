@@ -39,9 +39,10 @@ export HOMBLIB="${HOMBASE}/lib" && test -e $HOMBLIB && source $HOMBLIB
 hombie 2> /dev/null || return;
 
 ################################################################################
-# Bash Resources
+# Bash and Fresh Resources - Homb uses Fresh, it must be here.
 ################################################################################
 include bash
+include fresh
 
 ################################################################################
 # Application Resources !!!WARNING!!!   ORDER MATTERS... srsly.    !!!WARNING!!!
@@ -50,7 +51,6 @@ include ssh
 include git
 include svn
 include tmux
-include fresh
 include drush
 
 if [ -z "$HOMBLOCAL" ]; then

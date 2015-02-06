@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Fixes an issue with fresh not running from the home directory. This is an
+# alias for fresh in the alias file.
 freshtica(){
 
   cd ${HOME}
