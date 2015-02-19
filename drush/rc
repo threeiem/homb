@@ -7,7 +7,7 @@
 # this file.
 
 # Ensure drush is available.
-which drush > /dev/null || alias drush &> /dev/null || return
+which drush 2> /dev/null || alias drush &> /dev/null || return
 
 
 # Register our completion function. We include common short aliases for Drush.
