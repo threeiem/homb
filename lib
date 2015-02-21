@@ -16,7 +16,7 @@ homb() {
 
       source $hombRC
 
-      if [[ $(which fresh &> /dev/null) ]]; then
+      if [[ "$(which fresh)" ]]; then
 
         cd $HOME;
         # Use freshtica so we get the paths right.
