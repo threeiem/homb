@@ -16,16 +16,12 @@ homb() {
 
       source $hombRC
 
-      if [ "$freshBin" != "" ]; then
+      if [[ "$(which fresh)" ]]; then
 
         cd $HOME;
+        # Use freshtica so we get the paths right.
         freshtica update
         cd $OLDPWD
-
-      else
-        
-        echo "WARNING: Homb uses fresh."
-        echo "Do we install fresh here?"
 
       fi
 
@@ -33,7 +29,7 @@ homb() {
 
     else
 
-      echo "FAIL: $hombRC (not found)"
+      echo "FAIL: File not found ($hombRC)"
       return 1
 
     fi
