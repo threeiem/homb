@@ -43,6 +43,7 @@ export IRCNAME="Federal Holiday"
 # System Parameters 
 #-------------------------------------------------------------------------------
 export SYSTEM_NAME=$(uname)
+export HOSTNAME=$(hostname -f)
 
 ################################################################################
 # Export the path (important)
