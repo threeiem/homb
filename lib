@@ -11,12 +11,13 @@ homb() {
   if [ $HOMBASE != "" ]; then
 
     local hombRC="${HOMBASE}/rc"
+    local freshBin="$(which fresh 2> /dev/null)"
 
     if [ -f $hombRC ]; then
 
       source $hombRC
 
-      if [[ $(which fresh &> /dev/null) ]]; then
+      if [[ $freshBin != "" ]]; then
 
         cd $HOME;
         # Use freshtica so we get the paths right.
