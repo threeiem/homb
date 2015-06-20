@@ -57,9 +57,9 @@ hombie() {
   local whichBash=$(which bash 2> /dev/null)
   local aliasBash=$(alias bash 2> /dev/null)  
 
-  case $SHELL in
+  case ${SHELL##*/} in
 
-    ${whichBash}|${alaisBash})
+    ${whichBash##*/}|${aliasBash})
       
       return 0
       ;;
