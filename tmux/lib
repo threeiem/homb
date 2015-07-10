@@ -18,11 +18,10 @@ tomb() {
 
     if [ -z "${session_ls}" ]; then 
 
-      echo "No sessions found."
       set_auth_sock
       sleep 1s
       tmux new-session -s "$(hostname -s)"
-      return 1
+      return 0
 
     else
 
@@ -30,12 +29,12 @@ tomb() {
 
       if [[  "$count" > "1" ]]; then
 
+        # Generate a list of tombs
         local current=0
         IFS=$'\n'
         sessions="$(tmux list-sessions 2> /dev/null)"
         declare -a targets=()
 
-        echo "Gathering sessions data..."
         for item in $sessions; do
 
           title=$(echo "${item}"|cut -f 1 -d\:)
@@ -46,7 +45,7 @@ tomb() {
 
         done
 
-        PS3="Choose a session you want to revive. (${count} found)"
+        PS3="Pick a tomb to ressurect (${count} found):"
         safe_word="Quit"
 
         select option in "${targets[@]}" "Quit"; do
@@ -64,10 +63,11 @@ tomb() {
         done
 
       else
+        # Ressurect the solo tomb
         session_target=$session_ls
       fi
 
-      echo "Starting: $session_target"
+      echo "Resurrecting $session_target"
       sleep 1s
       set_auth_sock
       tmux attach-session -t ${session_target}
@@ -80,7 +80,7 @@ tomb() {
 
     if [ -z $session_ls ]; then
 
-      echo "Session ${1} not found."
+      echo "Tomb ${1} not found."
       sleep 1s
       set_auth_sock
       tmux new-session -s $1
@@ -88,7 +88,7 @@ tomb() {
 
     else
 
-      echo "tmux: Attaching session ${session_ls}"
+      echo "Ressurecting ${session_ls}"
       sleep 1s
       set_auth_sock
       tmux attach-session -t $1
