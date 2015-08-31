@@ -38,7 +38,7 @@ fi
 PROMPT_BASIC='\u@\h \$ ' # Basic prompt for compatability
 
 # color(ColorName, "target_string") *shrug* 
-PROMPT_USER='\[${COLOR_USER}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Reset}\][\[${COLOR_PATH}\]\w\[${Reset}\]]\[\n\]\[$(gitPS1)\]\$ \[${Reset}\]'; 
+PROMPT_USER='\[${COLOR_USER}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Reset}\][\[${COLOR_PATH}\]\w\[${Reset}\]]\n\[$(gitPS1)\]\$ \[${Reset}\]'; 
 
 PROMPT_SU='\[${COLOR_SU}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Reset}\][\[${COLOR_PATH})\]\w\[${Reset}\]]\[\n\]\[$(gitPS1)\]\$ \[${Reset}\]'; 
 
