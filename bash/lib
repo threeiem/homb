@@ -130,19 +130,6 @@ colors256() {
 
 ################################################################################
 #
-# Gurp
-#
-# Removes stuff I normally grep out.
-#
-################################################################################
-gurp() {
-
-  ps aux |grep $@ |grep -v "\.svn"|grep -v "grep"|grep -v "gurp"|grep -v "ps"
-
-}
-
-################################################################################
-#
 # Sizzle
 #
 # Make a string have some pizzaz. This function takes a string and will simply
