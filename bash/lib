@@ -137,7 +137,7 @@ colors256() {
 ################################################################################
 gurp() {
 
-  grep $@ |grep -v "\.svn"|grep -v "grep"|grep -v "gurp"|grep -v "ps"
+  ps aux |grep $@ |grep -v "\.svn"|grep -v "grep"|grep -v "gurp"|grep -v "ps"
 
 }
 
