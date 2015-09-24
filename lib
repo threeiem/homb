@@ -11,12 +11,13 @@ homb() {
   if [ $HOMBASE != "" ]; then
 
     local hombRC="${HOMBASE}/rc"
+    local freshBin="$(which fresh 2> /dev/null)"
 
     if [ -f $hombRC ]; then
 
       source $hombRC
 
-      if [[ "$(which fresh)" ]]; then
+      if [[ $freshBin != "" ]]; then
 
         cd $HOME;
         # Use freshtica so we get the paths right.
@@ -56,9 +57,9 @@ hombie() {
   local whichBash=$(which bash 2> /dev/null)
   local aliasBash=$(alias bash 2> /dev/null)  
 
-  case $SHELL in
+  case ${SHELL##*/} in
 
-    ${whichBash}|${alaisBash})
+    ${whichBash##*/}|${aliasBash})
       
       return 0
       ;;

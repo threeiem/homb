@@ -4,6 +4,8 @@
 # alias for fresh in the alias file.
 freshtica(){
 
+  local work=$PWD;
+
   cd ${HOME}
 
   if [ -x ${HOME}/bin/fresh ]; then
@@ -12,6 +14,6 @@ freshtica(){
 
   fi
 
-  cd $OLDPWD
+  cd $work
 
 }
