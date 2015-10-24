@@ -1,6 +1,8 @@
 Homb
 ====
 
+[![Join the chat at https://gitter.im/threeiem/homb](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/threeiem/homb?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 # Welcome Homb 
 
 The Homb project is set of bash extensions for applications. It is intended 
