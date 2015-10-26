@@ -19,8 +19,8 @@ if [ -z "${COLOR_USER}" ]; then
 fi
 
 # Super User Color (UID 0)
-if [ -z "${COLOR_SU}" ]; then
-  COLOR_SU="${Bold}${Yellow}"
+if [ -z "${COLOR_SUDO}" ]; then
+  COLOR_SUDO="${Bold}${Yellow}"
 fi
 
 # Path Color
@@ -38,9 +38,9 @@ fi
 PROMPT_BASIC='\u@\h \$ ' # Basic prompt for compatability
 
 # color(ColorName, "target_string") *shrug* 
-PROMPT_USER='\[${COLOR_USER}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Reset}\][\[${COLOR_PATH}\]\w\[${Reset}\]]\n\[$(gitPS1)\]\$ \[${Reset}\]'; 
+PROMPT_USER='\[${COLOR_USER}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Reset}\][\[${COLOR_PATH}\]\w\[${Reset}\]]$(gitPS1)\[${Reset}\]\n\$ '; 
 
-PROMPT_SU='\[${COLOR_SU}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Reset}\][\[${COLOR_PATH})\]\w\[${Reset}\]]\[\n\]\[$(gitPS1)\]\$ \[${Reset}\]'; 
+PROMPT_SUDO='\[${COLOR_SUDO}\]\u\[${Reset}\]@\[${COLOR_HOST}\]\h\[${Reset}\][\[${COLOR_PATH}\]\w\[${Reset}\]]$(gitPS1)\[${Reset}\]\n\$ '; 
 
 # Switch the prompt based on the (TODO terminal and) user we are using.
 #-------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ if [ $(interactive) ]; then
   #---------------------------------------------------------------------------
   if [[ "${UID}" == "0" ]]; then
       
-    PS1=$PROMPT_SU
+    PS1=$PROMPT_SUDO
 
   else
 
