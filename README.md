@@ -5,24 +5,25 @@ Homb
 
 # Welcome Homb 
 
-The Homb project is set of bash extensions for applications. It is intended 
-for use with <a href="http://freshshell.com/">fresh</a> for managing application
-configurations, including Homb itself. Homb can be installed standalone or with
-fresh (recommended). Homb leaves all the application configurations to Fresh 
-while Homb extends applications with various completions, helpers, and tools.
-See the <a href="https://github.com/threeiem/homb/wiki">wiki</a> for details on
-how to use Homb.
+The Homb is set of extensions for bash with all the gory details using 
+[fresh](http://freshshell.com/ "Nothing is fresher than this."). 
+[Fresh](http://freshshell.com/ "...the freshest.") is required for managing 
+configurations, including configuring Homb. Homb leaves all the application 
+configurations to Fresh while Homb extends applications with various 
+completions, helpers, and tools. See the 
+[wiki](https://github.com/threeiem/homb/wiki "Under construction like a mofo!") for details on how to use Homb.
 
-Homb only works with newer versions of bash and also relies on 
-<a href="http://git-scm.com/">git</a>. Currently we have tested Homb with newer
-versions of bash on CentOS/Redhat and flavors of Ubuntu.
+Homb only works with newer versions of bash and also relies on heavily on
+[git](http://git-scm.com/ "Git you some."). Currently we have tested Homb with newer
+versions of bash on CentOS/Redhat and flavors of Debian (Ubuntu and Raspbian).
 
 # Installing Homb with Fresh 
 
-The Homb project works best with Fresh. 
+The Homb project **only works with Fresh**. (Fresh is totally worth setting up.) 
+ 
 ## Install fresh
 
-Install  <a href="http://freshshell.com/">fresh</a> with the following:
+Install  [fresh](http://freshshell.com/ "...so so fresh.") with the following:
 
 ```
 bash -c "`curl -sL get.freshshell.com`"
@@ -43,31 +44,30 @@ Add this to the .freshrc file. In this example we are using "~/.homb/" as the
 setting for the $HOMBASE environment variable in the .bash_profile file.
 
 ```
-#-------------------------------------------------------------------------------
-# Homb: Makes setting $HOMBASE for Homb simply $HOME/.homb
-#-------------------------------------------------------------------------------
+# fresh make me a homb
 fresh threeiem/homb . --file=~/.homb/
 
-# Homb resource file to load Homb
+# fresh load homb
 fresh threeiem/homb rc
 ```
 
 
 # Homb Alone
 
-The Homb project used to work alone, but now it requires Fresh to be installed.
+The Homb project used to work alone, but now it **requires
+[fresh](http://freshshell.com/) to be installed**.
 
 
 # Common Problems
 
-* <b>Not using bash!</b> Homb is for <b><u>bash only</u></b>. Sorry, maybe another time.
+* Not using bash? **Homb is for bash only.** Save that corn shell for taco night.
 
-* <b>Non-Interactive Bash</b> Check to see if you are running an interative shell. Check with this command...
+* **Non-Interactive Bash** Check to see if you are running an interative shell. Check with this command...
 ```
 shopt login_shell
 ```
 
-* <b>Graphical Does Not Mean Interactive</b> Some terminal programs like konsole do not start bash interactively. For konsole you will need to modify the profile. Here is the command to run bash interactively.
+* **Graphical Does Not Mean Interactive** Some terminal programs like konsole do not start bash interactively. For konsole you will need to modify the profile. Here is the command to run bash interactively.
 ```
 bash -l
 ```
