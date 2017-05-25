@@ -35,9 +35,11 @@ Once  <a href="http://freshshell.com/">fresh</a> is downloaded add this to your
 ~/.bash_profile file (not ~/.bashrc).
 
 ```
+export PATH="${PATH}:~/bin"
 export HOMBASE="${HOME}/.homb"
-export FASHO="${HOME}/.fresh/build/shell.sh" && test -f $FASHO && source $FASHO
+export FRESH="${HOME}/.fresh/build/shell.sh" && test -f $FRESH && source $FRESH
 ```
+
 ## Configure (~/.freshrc)
 
 Add this to the .freshrc file. In this example we are using "~/.homb/" as the 
@@ -51,16 +53,26 @@ fresh threeiem/homb . --file=~/.homb/
 fresh threeiem/homb rc
 ```
 
+## Run fresh 
 
-# Homb Alone
+It's time to run `fresh` and begin setting things up. This will install homb with the latest version.
 
-The Homb project used to work alone, but now it **requires
-[fresh](http://freshshell.com/) to be installed**.
+```
+fresh
+```
 
+## Go homb
+
+Once `homb` is installed you can update using the `homb` command. Running `homb` runs fresh, 
+then resources all the files to load the updated version.
+
+```
+homb
+```
 
 # Common Problems
 
-* Not using bash? **Homb is for bash only.** Save that corn shell for taco night.
+* Not using bash? **Homb is for bash only.** Save that korn shell for taco night.
 
 * **Non-Interactive Bash** Check to see if you are running an interative shell. Check with this command...
 ```
@@ -70,5 +82,5 @@ shopt login_shell
 * **Graphical Does Not Mean Interactive** Some terminal programs like konsole do not start bash interactively. For konsole you will need to modify the profile. Here is the command to run bash interactively.
 ```
 bash -l
-```
 
+```
