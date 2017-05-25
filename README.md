@@ -35,7 +35,6 @@ Once  <a href="http://freshshell.com/">fresh</a> is downloaded add this to your
 ~/.bash_profile file (not ~/.bashrc).
 
 ```
-export PATH="${PATH}:~/bin"
 export HOMBASE="${HOME}/.homb"
 export FRESH="${HOME}/.fresh/build/shell.sh" && test -f $FRESH && source $FRESH
 ```
