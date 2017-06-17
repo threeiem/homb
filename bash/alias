@@ -28,8 +28,8 @@ alias shredd='shred -n 100 -u  -v -x -z'
 
 # Processes
 # -----------------------------------------------------------------------------
-alias psu='ps -x|grep -v grep|grep -v ps'
-alias tails='ps -a|grep -v grep|grep -v ps|grep tail'
+alias psu='ps x|grep -v grep|grep -v ps'
+alias tails='ps a|grep -v grep|grep -v ps|grep tail'
 
 # Disk
 # -----------------------------------------------------------------------------
