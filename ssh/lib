@@ -17,27 +17,23 @@
 #################################################################################
 set_auth_sock() {
 
-  if [ ! -S ${SSH_AUTH_SOCK_LINK} ]; then
+  
+  if [ -z $SSH_AUTH_SOCK ]; then
 
+    eval $(ssh-agent) > /dev/null  
+
+  fi
+
+
+  if [ ! $(test_symlink $SSH_AUTH_SOCK_LINK  $SSH_AUTH_SOCK 1> /dev/null) ]; then
+
+    # Stale symbolic link
     rm $SSH_AUTH_SOCK_LINK
     ln -sf $SSH_AUTH_SOCK $SSH_AUTH_SOCK_LINK
-
-  else
-
-    # This means we may have a old symbolic link and usually happens with 
-    # long duration logins or using terminals multiplexers like tmux or
-    # GNU screen.
-    if [ ! $(test_symlink $SSH_AUTH_SOCK_LINK  $SSH_AUTH_SOCK 1> /dev/null) ]; then
-
-      rm $SSH_AUTH_SOCK_LINK
-      ln -sf $SSH_AUTH_SOCK $SSH_AUTH_SOCK_LINK
-
-    fi
 
   fi
 
   export SSH_AUTH_SOCK="${SSH_AUTH_SOCK_LINK}"
-
   return 0
 
 }
