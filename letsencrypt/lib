@@ -1,0 +1,21 @@
+#!/bin/bash
+letsencrypt_updater() {
+
+  local current_working_directory=$(pwd)
+  local lelist=""
+
+  for domain in $*; do
+    lelist="-d ${domain} ${lelist}"
+  done
+
+  cd ${LETSENCRYPT_HOME}
+  echo "Working from $(pwd): ${lelist}"
+  apachectl stop
+  ./letsencrypt-auto certonly --standalone --renew-by-default ${lelist}
+  apachectl start
+  cd ${current_working_directory}
+}
+
+letsencrypt_update() {
+  sudo letsencrypt_updater
+}

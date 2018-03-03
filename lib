@@ -8,6 +8,8 @@
 #################################################################################
 homb() {
 
+  local OLDPWD=$(pwd 2> /dev/null)
+
   if [ $HOMBASE != "" ]; then
 
     local hombRC="${HOMBASE}/rc"
