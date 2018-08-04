@@ -1,8 +1,0 @@
-#!/bin/bash
-################################################################################
-# tmux/alias
-#
-# Homb alias file for tmux.
-################################################################################
-alias tmux='TERM=xterm-256color tmux -2'
-alias tls='tmux list-sessions 2> /dev/null'

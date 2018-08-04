@@ -1,9 +1,0 @@
-#!/bin/bash
-################################################################################
-# SVN Shell Resource File
-#
-# Contains all the bash shell magics for the SVN vcs. 
-#
-################################################################################
-
-export SVN_EDITOR="vim"

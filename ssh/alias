@@ -1,2 +1,0 @@
-#!/bin/bash
-alias sockit="source ${HOME}/.ssh/rc"
