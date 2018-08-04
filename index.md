@@ -60,7 +60,7 @@ It's time to run `fresh` and begin setting things up. This will install homb wit
 fresh
 ```
 
-# Run homb
+## Run homb
 
 Fresh has installed homb, but to run homb you need to resource .bash_profile
 
