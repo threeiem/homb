@@ -5,11 +5,10 @@ Homb
 
 # Welcome Homb 
 
-The Homb is set of extensions for bash with all the gory details using 
-[fresh](http://freshshell.com/ "Nothing is fresher than this."). 
-[Fresh](http://freshshell.com/ "...the freshest.") is required for managing 
-configurations, including configuring Homb. Homb leaves all the application 
-configurations to Fresh while Homb extends applications with various 
+The Homb is set of extensions for bash with all the gory details. We are using
+[fresh](http://freshshell.com/ "Nothing is fresher than this.") to install Homb. 
+[Fresh](http://freshshell.com/ "...the freshest.") is used for managing 
+configurations, including configuring Homb. Homb extends applications with various 
 completions, helpers, and tools. See the 
 [wiki](https://github.com/threeiem/homb/wiki "Under construction like a mofo!") for details on how to use Homb.
 
@@ -31,7 +30,7 @@ bash -c "`curl -sL get.freshshell.com`"
 
 ## Configure Bash (~/.bash_profile)
 
-Once  <a href="http://freshshell.com/">fresh</a> is downloaded add this to your
+Once [fresh](http://freshshell.com/) is downloaded add this to your
 ~/.bash_profile file (not ~/.bashrc).
 
 ```

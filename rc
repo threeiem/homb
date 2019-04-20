@@ -14,18 +14,6 @@
 #    ~/.bash_profile (not ~/.bashrc)
 #    export HOMBASE="${HOME}/.homb" # NO TRAILING SLASH!!!
 #
-#
-# Example 2) Homb with Fresh (http://freshshell.com/) Add these lines to your
-#            ~/.bash_profile before you source fresh's shell.sh file.
-#
-#    ~/.bash_profile (not ~/.bashrc)
-#    export HOMBASE="${HOME}/.fresh/source/threeiem/homb" # NO TRAILING SLASH!
-#    fpath="${HOME}/.fresh/build/shell.sh" && test -f $fpath && source $fpath
-#
-#    ~/.freshrc 
-#    fresh threeiem/homb bash/rc
-#    
-#
 # !!!! WARNING !!! WARNING !!! WARNING !!! WARNING !!! WARNING !!! WARNING !!!!
 #
 #
@@ -39,7 +27,7 @@ export HOMBLIB="${HOMBASE}/lib" && test -e $HOMBLIB && source $HOMBLIB
 hombie 2> /dev/null || return;
 
 ################################################################################
-# Bash and Fresh Resources - Homb uses Fresh, it must be here.
+# Bash 
 ################################################################################
 include bash
 
