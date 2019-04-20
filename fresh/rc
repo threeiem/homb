@@ -1,8 +1,0 @@
-#!/bin/bash
-################################################################################
-# Fresh Resource File
-#
-# Contains all the bash shell magics for fresh.
-#
-################################################################################
-export FRESH_LIVES="true dat"

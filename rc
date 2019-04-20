@@ -42,7 +42,6 @@ hombie 2> /dev/null || return;
 # Bash and Fresh Resources - Homb uses Fresh, it must be here.
 ################################################################################
 include bash
-include fresh
 
 ################################################################################
 # Application Resources !!!WARNING!!!   ORDER MATTERS... srsly.    !!!WARNING!!!
