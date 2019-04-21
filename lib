@@ -19,10 +19,7 @@ homb() {
 
       if [[ $freshBin != "" ]]; then
 
-        cd $HOME;
-        # Use freshtica so we get the paths right.
-        freshtica update
-        cd $OLDPWD
+        fresh
 
       fi
 
