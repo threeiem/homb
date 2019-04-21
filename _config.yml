@@ -1,6 +1,6 @@
 title: Homb
 description: Application extentions for bash shell.
 google_analytics: 
-theme: jekyll-theme-minimal
+theme: jekyll-theme-slate
 gems:
   - jekyll-mentions
